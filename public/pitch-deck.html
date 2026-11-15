@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pitch Deck (10 Slides) & 7 Mockup Màn Hình — Tai Mắt Công Dân Đồng Nai</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --black-frame: #0f172a;
+      --sky-border: #7dd3fc;
+      --sky-bg: #f0f9ff;
+      --sky-bg-soft: rgba(240, 249, 255, 0.55);
+      --gray-border: #64748b;
+      --gray-bg: #e2e8f0;
+      --gray-bg-soft: #f1f5f9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* TOP BAR */
+    .topbar {
+      background: #ffffff;
+      border-bottom: 2px solid var(--black-frame);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      background: var(--black-frame);
+      color: #fff;
+      font-weight: 800;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      border: 2px solid var(--sky-border);
+    }
+
+    .brand-title h1 {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .brand-title p {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .mode-switcher {
+      display: flex;
+      gap: 8px;
+      background: var(--sky-bg);
+      padding: 4px;
+      border-radius: 10px;
+      border: 2px solid var(--sky-border);
+    }
+
+    .mode-btn {
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 2px solid var(--sky-border);
+      background: #ffffff;
+      color: var(--text);
+      transition: all 0.15s ease;
+    }
+
+    .mode-btn:hover {
+      background: var(--sky-bg);
+    }
+
+    .mode-btn.active {
+      background: var(--gray-bg);
+      border-color: var(--gray-border);
+      color: #0f172a;
+      box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.12);
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .action-btn {
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid var(--sky-border);
+      background: var(--sky-bg-soft);
+      color: var(--text);
+      transition: all 0.15s ease;
+    }
+
+    .action-btn:hover,
+    .action-btn:focus {
+      background: var(--gray-bg);
+      border-color: var(--gray-border);
+    }
+
+    /* MAIN CONTAINER */
+    .main-container {
+      flex: 1;
+      max-width: 1360px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px 24px 36px;
+    }
+
+    .section-view {
+      display: none;
+    }
+
+    .section-view.active {
+      display: block;
+    }
+
+    /* PITCH DECK SLIDES */
+    .deck-nav-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .pill-btn {
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 6px;
+      border: 2px solid var(--sky-border);
+      background: var(--sky-bg-soft);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .pill-btn.active {
+      background: var(--gray-bg);
+      border-color: var(--gray-border);
+      color: #0f172a;
+    }
+
+    .slide-stage {
+      background: #ffffff;
+      border: 2px solid var(--black-frame);
+      border-radius: 16px;
+      min-height: 580px;
+      padding: 36px 42px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+      position: relative;
+    }
+
+    .slide {
+      display: none;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .slide-header {
+      border-bottom: 2px solid var(--sky-border);
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .slide-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: var(--sky-bg);
+      border: 2px solid var(--sky-border);
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+
+    .slide-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .slide-subtitle {
+      font-size: 15px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .slide-number-box {
+      padding: 8px 14px;
+      border: 2px solid var(--black-frame);
+      background: var(--gray-bg-soft);
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    /* CARDS & GRIDS */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .card-sky {
+      border: 2px solid var(--sky-border);
+      background: var(--sky-bg-soft);
+      border-radius: 12px;
+      padding: 18px;
+      transition: all 0.15s ease;
+    }
+
+    .card-sky:hover,
+    .card-sky.selected {
+      border-color: var(--gray-border);
+      background: var(--gray-bg);
+    }
+
+    .card-black {
+      border: 2px solid var(--black-frame);
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-text {
+      font-size: 13.5px;
+      color: #334155;
+    }
+
+    .kpi-big {
+      font-size: 30px;
+      font-weight: 900;
+      color: var(--text);
+      margin: 4px 0;
+    }
+
+    /* TABLES */
+    table.std-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      border: 2px solid var(--black-frame);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    table.std-table th {
+      background: var(--sky-bg);
+      border-bottom: 2px solid var(--sky-border);
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    table.std-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #cbd5e1;
+      background: #ffffff;
+    }
+
+    table.std-table tr:hover td {
+      background: var(--gray-bg);
+    }
+
+    /* SLIDE FOOTER CONTROLS */
+    .slide-footer {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 2px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .progress-wrap {
+      flex: 1;
+      max-width: 360px;
+      height: 10px;
+      background: var(--sky-bg);
+      border: 2px solid var(--sky-border);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--gray-border);
+      width: 10%;
+      transition: width 0.2s ease;
+    }
+
+    /* MOCKUP SECTION */
+    .mockup-tabs {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .mockup-tab-btn {
+      padding: 10px 8px;
+      border: 2px solid var(--sky-border);
+      background: var(--sky-bg-soft);
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.15s ease;
+    }
+
+    .mockup-tab-btn .m-group {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+    }
+
+    .mockup-tab-btn .m-name {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text);
+      margin-top: 2px;
+      display: block;
+    }
+
+    .mockup-tab-btn.active {
+      background: var(--gray-bg);
+      border-color: var(--gray-border);
+    }
+
+    .mockup-screen {
+      display: none;
+      border: 2px solid var(--black-frame);
+      border-radius: 16px;
+      background: #ffffff;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+    }
+
+    .mockup-screen.active {
+      display: block;
+    }
+
+    .browser-bar {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+    }
+
+    .browser-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .browser-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #64748b;
+    }
+
+    .browser-url {
+      background: #1e293b;
+      padding: 4px 14px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 12px;
+      color: #bae6fd;
+      border: 1px solid #334155;
+    }
+
+    .mockup-body {
+      padding: 24px;
+    }
+
+    /* INTERACTIVE UI CONTROLS IN MOCKUPS */
+    .ui-input, .ui-select, .ui-textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 2px solid var(--sky-border);
+      background: var(--sky-bg-soft);
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      outline: none;
+    }
+
+    .ui-input:focus, .ui-select:focus, .ui-textarea:focus {
+      border-color: var(--gray-border);
+      background: var(--gray-bg);
+    }
+
+    .selectable-box {
+      border: 2px solid var(--sky-border);
+      background: var(--sky-bg-soft);
+      border-radius: 10px;
+      padding: 12px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    .selectable-box.selected {
+      border-color: var(--gray-border);
+      background: var(--gray-bg);
+      font-weight: 700;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      font-size: 11px;
+      font-weight: 800;
+      border-radius: 6px;
+      border: 1.5px solid var(--sky-border);
+      background: var(--sky-bg);
+    }
+
+    .badge-gray {
+      border-color: var(--gray-border);
+      background: var(--gray-bg);
+    }
+
+    .watermark-preview {
+      background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+      color: #ffffff;
+      border-radius: 12px;
+      border: 2px solid var(--black-frame);
+      padding: 20px;
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .watermark-stamp {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1.5px solid var(--sky-border);
+      border-radius: 8px;
+      padding: 12px;
+      font-family: monospace;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .map-mock {
+      background: #e0f2fe;
+      border: 2px solid var(--sky-border);
+      border-radius: 10px;
+      padding: 18px;
+      min-height: 210px;
+      position: relative;
+      background-image: radial-gradient(#7dd3fc 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+
+    .formula-box {
+      border: 2px solid var(--black-frame);
+      background: var(--sky-bg);
+      padding: 18px;
+      border-radius: 12px;
+      font-family: monospace;
+      font-size: 16px;
+      font-weight: 800;
+      text-align: center;
+      margin: 14px 0;
+    }
+
+    @media (max-width: 960px) {
+      .grid-2, .grid-3, .grid-4, .mockup-tabs {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-logo">ĐN</div>
+      <div class="brand-title">
+        <h1>Tai Mắt Công Dân Đồng Nai</h1>
+        <p>Pitch Deck 10 Slide &bull; Bộ Mockup 7 Màn Hình (3 Dân Gửi + 3 Cán Bộ + 1 Dashboard)</p>
+      </div>
+    </div>
+
+    <div class="mode-switcher">
+      <button id="btnModeDeck" class="mode-btn active" onclick="switchMode('deck')">
+        📊 Pitch Deck (10 Slide)
+      </button>
+      <button id="btnModeMockup" class="mode-btn" onclick="switchMode('mockup')">
+        🖥️ UI Mockup Tương Tác (7 Màn)
+      </button>
+    </div>
+
+    <div class="top-actions">
+      <button class="action-btn" onclick="window.print()">🖨️ In / Xuất PDF</button>
+      <button class="action-btn" onclick="toggleFullScreen()">⛶ Toàn màn hình</button>
+    </div>
+  </header>
+
+  <main class="main-container">
+
+    <!-- ==========================================
+         PHẦN 1: PITCH DECK 10 SLIDE
+         ========================================== -->
+    <section id="viewDeck" class="section-view active">
+      <div class="deck-nav-pills" id="slidePills"></div>
+
+      <div class="slide-stage">
+        <!-- SLIDE 1 -->
+        <div class="slide active" data-title="1. Trang bìa">
+          <div class="slide-header">
+            <div>
+              <span class="slide-badge">SLIDE 01 / 10 &bull; TITLE SLIDE</span>
+              <h2 class="slide-title">TAI MẮT CÔNG DÂN ĐỒNG NAI</h2>
+              <p class="slide-subtitle">Hệ thống Phản ánh Hạ tầng Đô thị Trực tuyến & Điều phối Xử lý Liên thông 95 Xã/Phường</p>
+            </div>
+            <div class="slide-number-box">01 / 10</div>
+          </div>
+
+          <div class="grid-3" style="margin-bottom: 20px;">
+            <div class="card-sky selected">
+              <div class="card-title"><span>📸 Anti-Fake Watermark</span><span>GPS + Giờ</span></div>
+              <p class="card-text">Chụp ảnh hiện trường đốt trực tiếp tọa độ GPS, sai số mét, thời gian thực và tên Xã/Phường lên bức ảnh bằng HTML5 Canvas.</p>
+            </div>
+            <div class="card-sky">
+              <div class="card-title"><span>🎙️ Voice-to-Text (vi-VN)</span><span>Rảnh tay</span></div>
+              <p class="card-text">Người dân bấm thu âm giọng nói tiếng Việt chuyển thẳng thành văn bản chi tiết ngay tại hiện trường không cần gõ phím.</p>
+            </div>
+            <div class="card-sky">
+              <div class="card-title"><span>🏛️ Tách Cổng Độc Lập</span><span>95 Xã/Phường</span></div>
+              <p class="card-text">Luồng Người dân và Luồng Cơ quan tách biệt hoàn toàn, kết nối qua định tuyến GPS tự động và bảng xếp hạng KPI công khai.</p>
+            </div>
+          </div>
+
+          <div class="card-black">
+            <div class="grid-4" style="text-align: center;">
+              <div>
+                <div class="kpi-big">95</div>
+                <div class="card-text">Đơn vị Xã / Phường toàn tỉnh</div>
+              </div>
+              <div>
+                <div class="kpi-big">7 Cụm</div>
+                <div class="card-text">Phân vùng điều phối trọng điểm</div>
+              </div>
+              <div>
+                <div class="kpi-big">15 Giây</div>
+                <div class="card-text">Thời gian gửi xong 1 phản ánh</div>
+              </div>
+              <div>
+                <div class="kpi-big">100%</div>
+                <div class="card-text">Hồ sơ công khai tiến độ SLA</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide" data-title="2. Vấn đề">
+          <div class="slide-header">
+            <div>
+              <span class="slide-badge">SLIDE 02 / 10 &bull; THE PROBLEM</span>
+              <h2 class="slide-title">4 Điểm Nghẽn Trong Tiếp Nhận Sự Cố Hạ Tầng Hiện Nay</h2>
+              <p class="slide-subtitle">Tại sao phản ánh qua mạng xã hội hoặc đường dây nóng truyền thống chưa hiệu quả?</p>
+            </div>
+            <div class="slide-number-box">02 / 10</div>
+          </div>
+
+          <div class="grid-2">
+            <div class="card-sky selected">
+              <div class="card-title">1. Thiếu xác thực vị trí & thời điểm chụp</div>
+              <p class="card-text">Ảnh gửi qua mạng xã hội/Zalo dễ bị dùng lại ảnh cũ, không có tọa độ GPS chính xác khiến cán bộ mất nhiều giờ đi tìm điểm sự cố.</p>
+            </div>
+            <div class="card-sky">
+              <div class="card-title">2. Biểu mẫu hành chính rườm rà</div>
+              <p class="card-text">Người dân đang đi ngoài đường ngại điền hàng chục ô thông tin cá nhân và hành chính không cần thiết, dẫn đến bỏ cuộc giữa chừng.</p>
+            </div>
+            <div class="card-sky">
+              <div class="card-title">3. Đánh đồng mức độ khẩn cấp</div>
+              <p class="card-text">Sự cố nguy hiểm tính mạng (cây đổ vào dây điện, sập nắp hố ga) bị xếp chung hàng đợi với sự cố bảo trì định kỳ.</p>
+            </div>
+            <div class="card-sky">
+              <div class="card-title">4. Thiếu công cụ đo lường KPI giữa các Phường/Xã</div>
+              <p class="card-text">Lãnh đạo và người dân thiếu bảng thống kê trực quan để biết địa phương nào xử lý nhanh (Dẫn đầu) hay chậm trễ (Cần đôn đốc).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="slide" data-title="3. Giải pháp">
+          <div class="slide-header">
+            <div>
+              <span class="slide-badge">SLIDE 03 / 10 &bull; THE SOLUTION</span>
+              <h2 class="slide-title">"Chạm Nhanh Hiện Trường — Định Tuyến Đúng Phường — Minh Bạch Từng Giờ"</h2>
+              <p class="slide-subtitle">Tối giản tối đa cho người dân &bull; Tối ưu điều phối cho cán bộ</p>
+            </div>
+            <div class="slide-number-box">03 / 10</div>
+          </div>
+
+          <div class="grid-3">
+            <div class="card-sky selected">
+              <div class="card-title">BƯỚC 1: GỬI TRONG 15 GIÂY</div>
+              <p class="card-text">
+                &bull; Chụp ảnh tự đóng dấu GPS.<br/>
+                &bull; Chọn 1 trong 6 mục (có <b>Mục khác</b>).<br/>
+                &bull; Chọn 1 ô mức độ: <b>Gấp / Vừa / Chậm</b>.<br/>
+                &bull; Nhập địa chỉ + <b>Ghi âm thành văn bản</b>.
+              </p>
+            </div>
+            <div class="card-sky">
+              <div class="card-title">BƯỚC 2: ĐỊNH TUYẾN TỰ ĐỘNG</div>
+              <p class="card-text">
+                &bull; Bản đồ <b>Google Maps</b> ghim vị trí.<br/>
+                &bull; Thuật toán Haversine tự động khớp tọa độ về đúng 1 trong <b>95 Xã/Phường</b>.<br/>
+                &bull; Gắn hạn mức cam kết SLA (6h &ndash; 24h).
+              </p>
+            </div>
+            <div class="card-sky">
+              <div class="card-title">BƯỚC 3: ĐIỀU PHỐI & XẾP HẠNG</div>
+              <p class="card-text">
+                &bull; Cán bộ mở Popup phân công tổ chuyên trách.<br/>
+                &bull; Nghiệm thu cập nhật thẳng sang <b>Mục Hoàn Thành</b>.<br/>
+                &bull; Tự động tính lại điểm <b>KPI 95 Xã/Phường</b>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 4 -->
+        <div class="slide" data-title="4. Kiến trúc">
+          <div class="slide-header">
+            <div>
+              <span class="slide-badge">SLIDE 04 / 10 &bull; SYSTEM ARCHITECTURE</span>
+              <h2 class="slide-title">Kiến Trúc Tách Biệt Hoàn Toàn 2 Cổng Giao Diện</h2>
+              <p class="slide-subtitle">Không trộn lẫn luồng thao tác giữa Người dân và Cơ quan quản lý</p>
+            </div>
+            <div class="slide-number-box">04 / 10</div>
+          </div>
+
+          <div class="grid-2">
+            <div class="card-sky selected">
+              <div class="card-title">👤 CỔNG NGƯỜI DÂN (/citizen &bull; /citizen/map)</div>
+              <p class="card-text" style="margin-bottom: 10px;">Giao diện tối giản, tập trung vào tốc độ báo cáo ngoài hiện trường:</p>
+              <ul style="padding-left: 18px; font-size: 13.5px; line-height: 1.8;">
+                <li><b>Gửi Phản Ánh (/citizen):</b> Camera đóng dấu GPS, Google Maps, chọn Mục (có Mục khác), chọn Mức độ (Gấp/Vừa/Chậm), Địa chỉ & Ghi âm giọng nói.</li>
+                <li><b>Bản Đồ Công Khai (/citizen/map):</b> Tra cứu hồ sơ toàn tỉnh trên Google Maps (Đường phố & Vệ tinh), lọc theo trạng thái/mức độ.</li>
+              </ul>
+            </div>
+
+            <div class="card-sky">
+              <div class="card-title">🏛️ CỔNG CƠ QUAN (/agency/*)</div>
+              <p class="card-text" style="margin-bottom: 10px;">4 phân hệ chuyên biệt dành cho UBND 95 Xã/Phường:</p>
+              <ul style="padding-left: 18px; font-size: 13.5px; line-height: 1.8;">
+                <li><b>1. Phân Công (/agency/dispatch):</b> Nhận việc, lọc độ khẩn, mở Popup giao cán bộ.</li>
+                <li><b>2. Mục Hoàn Thành (/agency/completed):</b> Lưu trữ biên bản & thời gian nghiệm thu.</li>
+                <li><b>3. Bảng Xếp Hạng (/agency/ranking):</b> Vinh danh Top 3 & bảng KPI 95 Xã/Phường.</li>
+                <li><b>4. Thống Kê Khu Vực (/agency/area-stats):</b> Báo cáo 7 Cụm khu vực & loại sự cố.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 5 -->
+        <div class="slide" data-title="5. Công nghệ lõi">
+          <div class="slide-header">
+            <div>
+              <span class="slide-badge">SLIDE 05 / 10 &bull; CORE TECHNOLOGY</span>
+              <h2 class="slide-title">3 Trụ Cột Công Nghệ Xác Thực Hiện Trường</h2>
+              <p class="slide-subtitle">Vận hành trực tiếp trên trình duyệt Web/Mobile không cần cài đặt ứng dụng nặng</p>
+            </div>
+            <div class="slide-number-box">05 / 10</div>
+          </div>
+
+          <table class="std-table">
+            <thead>
+              <tr>
+                <th>Trụ cột công nghệ</th>
+                <th>Cơ chế kỹ thuật thực thi</th>
+                <th>Giá trị mang lại</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>1. HTML5 Canvas Anti-Fake Watermark</b><br/><span class="badge">src/utils/watermark.js</span></td>
+                <td>Đốt trực tiếp dải băng thông tin gồm <code>GPS (Lat, Lng, &plusmn;m)</code>, <code>Thời gian thực</code>, <code>Xã/Phường</code> và <code>Hạng mục</code> vào pixel ảnh.</td>
+                <td>Chống sử dụng ảnh giả/ảnh cũ; tạo bằng chứng pháp lý khi nghiệm thu.</td>
+              </tr>
+              <tr>
+                <td><b>2. Vietnamese Speech-to-Text</b><br/><span class="badge">Web Speech API (vi-VN)</span></td>
+                <td>Chuyển giọng nói tiếng Việt thời gian thực thành văn bản trong ô mô tả, kèm cơ chế nạp mẫu thông minh theo từng hạng mục.</td>
+                <td>Giúp người dân báo cáo rảnh tay ngoài hiện trường chỉ trong vài giây.</td>
+              </tr>
+              <tr>
+                <td><b>3. Google Maps + Haversine Geo-Routing</b><br/><span class="badge">mt0-mt3.google.com/vt</span></td>
+                <td>Bản đồ Google Maps Tiếng Việt (2 lớp Đường phố & Vệ tinh) kết hợp hàm <code>findNearestWard(lat, lng)</code>.</td>
+                <td>Tự động nhận diện chính xác địa bàn quản lý trong 95 Xã/Phường.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- SLIDE 6 -->
+        <div class="slide" data-title="6. Ma trận SLA">
+          <div class="slide-header">
+            <div>
+              <span class="slide-badge">SLIDE 06 / 10 &bull; TRIAGE & SLA MATRIX</span>
+              <h2 class="slide-title">Ma Trận 6 Hạng Mục Báo Cáo & 3 Mức Độ Khẩn Cấp</h2>
+              <p class="slide-subtitle">Chuẩn hóa cam kết thời gian xử lý (SLA) và ưu tiên điều phối</p>
+            </div>
+            <div class="slide-number-box">06 / 10</div>
+          </div>
+
+          <div class="grid-2">
+            <div>
+              <h3 style="font-size: 15px; font-weight: 800; margin-bottom: 10px;">6 HẠNG MỤC BÁO CÁO (CÓ MỤC KHÁC)</h3>
+              <table class="std-table">
+                <thead>
+                  <tr>
+                    <th>Hạng mục phản ánh</th>
+                    <th>Mã</th>
+                    <th>Cam kết SLA</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><b>Cây ngã đổ / Dây điện võng</b></td><td><code>tree_cable</code></td><td><b>6 giờ</b></td></tr>
+                  <tr><td><b>Rác thải tồn đọng / Ô nhiễm</b></td><td><code>garbage</code></td><td><b>8 giờ</b></td></tr>
+                  <tr><td><b>Đèn đường hỏng / Chiếu sáng</b></td><td><code>streetlight</code></td><td><b>12 giờ</b></td></tr>
+                  <tr><td><b>Ngập nước / Cống thoát nước</b></td><td><code>flooding</code></td><td><b>12 giờ</b></td></tr>
+                  <tr><td><b>Ổ gà / Mặt đường hư hỏng</b></td><td><code>pothole</code></td><td><b>24 giờ</b></td></tr>
+                  <tr><td><b>Mục khác (Tự nhập chi tiết)</b></td><td><code>other</code></td><td><b>24 giờ</b></td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div>
+              <h3 style="font-size: 15px; font-weight: 800; margin-bottom: 10px;">1 Ô CHỌN 3 MỨC ĐỘ KHẨN CẤP</h3>
+              <div class="card-sky selected" style="margin-bottom: 10px;">
+                <div class="card-title"><span>GẤP (Urgent)</span><span class="badge badge-gray">Ưu tiên số 1</span></div>
+                <p class="card-text">Sự cố gây mất an toàn giao thông hoặc nguy hiểm trực tiếp, cần cử cán bộ xử lý ngay.</p>
+              </div>
+              <div class="card-sky" style="margin-bottom: 10px;">
+                <div class="card-title"><span>VỪA (Medium)</span><span class="badge">Tiêu chuẩn</span></div>
+                <p class="card-text">Ảnh hưởng sinh hoạt và mỹ quan khu vực, điều phối xử lý trong khung giờ SLA tiêu chuẩn.</p>
+              </div>
+              <div class="card-sky">
+                <div class="card-title"><span>CHẬM (Slow)</span><span class="badge">Định kỳ</span></div>
+                <p class="card-text">Sự cố nhỏ, lên lịch duy tu bảo dưỡng định kỳ theo kế hoạch tuần của địa phương.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 7 -->
+        <div class="slide" data-title="7. Quy mô 95 Xã/Phường">
+          <div class="slide-header">
+            <div>
+              <span class="slide-badge">SLIDE 07 / 10 &bull; PROVINCIAL SCALE</span>
+              <h2 class="slide-title">Bao Phủ Toàn Diện 7 Cụm Khu Vực — 95 Xã/Phường Đồng Nai</h2>
+              <p class="slide-subtitle">Dữ liệu tọa độ tâm điểm (Lat/Lng) được tích hợp sẵn cho toàn bộ 95 đơn vị hành chính</p>
+            </div>
+            <div class="slide-number-box">07 / 10</div>
+          </div>
+
+          <table class="std-table">
+            <thead>
+              <tr>
+                <th>Cụm Khu Vực</th>
+                <th>Số Đơn Vị</th>
+                <th>Các Xã / Phường Trọng Điểm Tiêu Biểu</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><b>1. Khu vực Biên Hòa</b></td><td><b>25</b></td><td>Trấn Biên, Biên Hòa, Tam Hiệp, Long Bình, Trảng Dài, Hố Nai, Tân Phong, Bửu Long...</td></tr>
+              <tr><td><b>2. Khu vực Long Khánh</b></td><td><b>14</b></td><td>Xuân An, Xuân Bình, Xuân Hòa, Phú Bình, Bàu Trâm, Bảo Vinh, Suối Tre, Hàng Gòn...</td></tr>
+              <tr><td><b>3. Khu vực Long Thành</b></td><td><b>13</b></td><td>Long Thành, An Phước, Bình Sơn, Cẩm Đường, Lộc An, Long Đức, Long Phước, Phước Thái...</td></tr>
+              <tr><td><b>4. Khu vực Nhơn Trạch</b></td><td><b>12</b></td><td>Hiệp Phước, Đại Phước, Long Tân, Phú Đông, Phú Hội, Phú Hữu, Phước An, Phước Thiền...</td></tr>
+              <tr><td><b>5. Khu vực Trảng Bom</b></td><td><b>12</b></td><td>Trảng Bom, Bắc Sơn, Bình Minh, Đông Hòa, Giang Điền, Hố Nai 3, Sông Trầu, Tây Hòa...</td></tr>
+              <tr><td><b>6. Vĩnh Cửu & Thống Nhất</b></td><td><b>12</b></td><td>Vĩnh An, Thạnh Phú, Trị An, Mã Đà, Dầu Giây, Gia Tân 1, Gia Tân 2, Gia Tân 3, Quang Trung...</td></tr>
+              <tr><td><b>7. Xuân Lộc, Cẩm Mỹ, Định Quán, Tân Phú</b></td><td><b>7+</b></td><td>Gia Ray, Long Giao, Định Quán, Tân Phú và các xã trung tâm cụm phía Đông/Bắc tỉnh.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- SLIDE 8 -->
+        <div class="slide" data-title="8. Công thức KPI">
+          <div class="slide-header">
+            <div>
+              <span class="slide-badge">SLIDE 08 / 10 &bull; ACCOUNTABILITY & KPI</span>
+              <h2 class="slide-title">Cơ Chế Chấm Điểm KPI & Bảng Xếp Hạng Tự Động</h2>
+              <p class="slide-subtitle">Đánh giá khách quan dựa trên Tỷ lệ hoàn thành và Tốc độ xử lý thực tế</p>
+            </div>
+            <div class="slide-number-box">08 / 10</div>
+          </div>
+
+          <div class="formula-box">
+            KPI Score = 0.65 &times; Tỷ lệ hoàn thành (%) + 0.35 &times; max(0, 100 &minus; 4.2 &times; Thời gian xử lý TB giờ)
+          </div>
+
+          <div class="grid-3" style="margin-top: 18px;">
+            <div class="card-sky selected">
+              <div class="card-title"><span>🏆 DẪN ĐẦU (Xuất sắc)</span><span class="badge badge-gray">KPI &ge; 88</span></div>
+              <p class="card-text">Đơn vị có điểm KPI từ 88 trở lên và thời gian xử lý trung bình &le; 6.5 giờ. Được vinh danh tại Top 3 toàn tỉnh.</p>
+            </div>
+            <div class="card-sky">
+              <div class="card-title"><span>✅ CHUẨN (Tốt)</span><span class="badge">76 &le; KPI &lt; 88</span></div>
+              <p class="card-text">Đơn vị duy trì tiến độ xử lý ổn định, bám sát khung cam kết SLA của từng hạng mục hạ tầng.</p>
+            </div>
+            <div class="card-sky">
+              <div class="card-title"><span>⚠️ ĐÔN ĐỐC (Cần nhắc nhở)</span><span class="badge">KPI &lt; 76</span></div>
+              <p class="card-text">KPI dưới 76, thời gian xử lý trung bình &gt; 10.5 giờ hoặc đang tồn đọng &ge; 2 hồ sơ mới chưa phân công.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 9 -->
+        <div class="slide" data-title="9. Hiệu quả & Lộ trình">
+          <div class="slide-header">
+            <div>
+              <span class="slide-badge">SLIDE 09 / 10 &bull; IMPACT & ROADMAP</span>
+              <h2 class="slide-title">Hiệu Quả Vận Hành & Lộ Trình Phát Triển</h2>
+              <p class="slide-subtitle">Chuyển đổi số thực chất từ cấp cơ sở Xã/Phường</p>
+            </div>
+            <div class="slide-number-box">09 / 10</div>
+          </div>
+
+          <div class="grid-2">
+            <div class="card-sky selected">
+              <div class="card-title">📈 HIỆU QUẢ ĐẠT ĐƯỢC</div>
+              <ul style="padding-left: 18px; font-size: 13.5px; line-height: 1.9;">
+                <li><b>Giảm 68% thời gian tiếp nhận:</b> Tự động hóa khâu xác minh vị trí và phân loại đơn vị phụ trách.</li>
+                <li><b>Rút ngắn thời gian xử lý còn 4.5h &ndash; 6.4h:</b> Nhờ cơ chế lọc ưu tiên các hồ sơ mức độ <b>Gấp</b>.</li>
+                <li><b>Minh bạch 100% lịch sử xử lý:</b> Mọi bước từ khi dân gửi đến khi cán bộ nghiệm thu đều lưu Audit Log.</li>
+              </ul>
+            </div>
+
+            <div class="card-sky">
+              <div class="card-title">🚀 LỘ TRÌNH MỞ RỘNG (2026 &ndash; 2027)</div>
+              <ul style="padding-left: 18px; font-size: 13.5px; line-height: 1.9;">
+                <li><b>Giai đoạn 1 (Hiện tại):</b> Vận hành Web App tách 2 cổng Dân & Cơ quan cho 95 Xã/Phường trên nền Google Maps.</li>
+                <li><b>Giai đoạn 2 (Q1/2027):</b> Tích hợp AI nhận diện mức độ hư hại mặt đường qua ảnh chụp & Zalo Mini App.</li>
+                <li><b>Giai đoạn 3 (Q3/2027):</b> Kết nối Trung tâm Điều hành Thông minh (IOC Đồng Nai) & cảnh báo tự động khi sắp trễ SLA.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 10 -->
+        <div class="slide" data-title="10. Tổng kết & Demo">
+          <div class="slide-header">
+            <div>
+              <span class="slide-badge">SLIDE 10 / 10 &bull; LIVE DEMO & SUMMARY</span>
+              <h2 class="slide-title">Sẵn Sàng Trải Nghiệm Thực Tế (Click-to-Run 100%)</h2>
+              <p class="slide-subtitle">Ngôn ngữ thiết kế: Nền trắng &bull; Khung đen &bull; Ô chọn xanh biển nhạt chuyển xám khi tương tác</p>
+            </div>
+            <div class="slide-number-box">10 / 10</div>
+          </div>
+
+          <div class="grid-3" style="margin-bottom: 20px;">
+            <div class="card-sky selected">
+              <div class="card-title">1. Luồng Dân Gửi (3 Màn)</div>
+              <p class="card-text">Đăng nhập nhanh 1 chạm &rarr; Chụp ảnh đóng dấu GPS &rarr; Ghi âm tiếng Việt + Chọn Mục & Mức độ (Gấp/Vừa/Chậm) &rarr; Xem Google Maps.</p>
+            </div>
+            <div class="card-sky">
+              <div class="card-title">2. Luồng Cán Bộ (3 Màn)</div>
+              <p class="card-text">Lọc hồ sơ Gấp tại bàn Phân công &rarr; Mở Popup giao cán bộ & nhập giờ nghiệm thu &rarr; Tra cứu kho lưu trữ Mục Hoàn Thành.</p>
+            </div>
+            <div class="card-sky">
+              <div class="card-title">3. Dashboard Công Khai (1 Màn)</div>
+              <p class="card-text">Theo dõi 4 chỉ số KPI toàn tỉnh, bảng hiệu suất 7 Cụm khu vực và bảng xếp hạng trực tuyến 95 Xã/Phường.</p>
+            </div>
+          </div>
+
+          <div class="card-black" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+            <div>
+              <div style="font-size: 16px; font-weight: 800;">Chuyển sang chế độ xem chi tiết 7 Màn hình Mockup tương tác</div>
+              <div style="font-size: 13px; color: var(--muted);">Bấm vào nút bên phải để duyệt trực tiếp từng màn hình trong bộ 7 Mockup chuẩn.</div>
+            </div>
+            <button class="mode-btn active" onclick="switchMode('mockup')">
+              🖥️ Mở Bộ 7 Màn Hình Mockup &rarr;
+            </button>
+          </div>
+        </div>
+
+        <!-- FOOTER NAVIGATION -->
+        <div class="slide-footer">
+          <button class="action-btn" onclick="prevSlide()">&larr; Slide trước</button>
+          <div class="progress-wrap">
+            <div id="slideProgressBar" class="progress-bar"></div>
+          </div>
+          <button class="action-btn" onclick="nextSlide()">Slide tiếp theo &rarr;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PHẦN 2: BỘ MOCKUP 7 MÀN HÌNH
+         ========================================== -->
+    <section id="viewMockup" class="section-view">
+      <div class="mockup-tabs">
+        <button class="mockup-tab-btn active" onclick="selectMockup(0)">
+          <span class="m-group">Dân gửi (1/3)</span>
+          <span class="m-name">1. Camera & GPS</span>
+        </button>
+        <button class="mockup-tab-btn" onclick="selectMockup(1)">
+          <span class="m-group">Dân gửi (2/3)</span>
+          <span class="m-name">2. Mục, Mức độ & Ghi âm</span>
+        </button>
+        <button class="mockup-tab-btn" onclick="selectMockup(2)">
+          <span class="m-group">Dân gửi (3/3)</span>
+          <span class="m-name">3. Bản đồ công khai</span>
+        </button>
+        <button class="mockup-tab-btn" onclick="selectMockup(3)">
+          <span class="m-group">Cán bộ (1/3)</span>
+          <span class="m-name">4. Bàn Phân Công</span>
+        </button>
+        <button class="mockup-tab-btn" onclick="selectMockup(4)">
+          <span class="m-group">Cán bộ (2/3)</span>
+          <span class="m-name">5. Popup Nghiệm Thu</span>
+        </button>
+        <button class="mockup-tab-btn" onclick="selectMockup(5)">
+          <span class="m-group">Cán bộ (3/3)</span>
+          <span class="m-name">6. Mục Hoàn Thành</span>
+        </button>
+        <button class="mockup-tab-btn" onclick="selectMockup(6)">
+          <span class="m-group">Dashboard (1/1)</span>
+          <span class="m-name">7. Dashboard Công Khai</span>
+        </button>
+      </div>
+
+      <!-- MOCKUP 1: DÂN GỬI 1/3 -->
+      <div class="mockup-screen active">
+        <div class="browser-bar">
+          <div class="browser-dots">
+            <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+          </div>
+          <div class="browser-url">http://localhost:5173/citizen — Màn 1/3 (Luồng Dân Gửi): Chụp ảnh Watermark GPS & Ghim Google Maps</div>
+          <div>Cổng Người Dân</div>
+        </div>
+        <div class="mockup-body">
+          <div class="grid-2">
+            <div class="card-black">
+              <div class="card-title">
+                <span>1. GHI NHẬN HIỆN TRƯỜNG (CAMERA + GPS)</span>
+                <span class="badge">🕒 15/11/2026 18:10:25</span>
+              </div>
+              <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+                <button class="action-btn">🎥 Mở Camera</button>
+                <button class="action-btn">📤 Tải ảnh thiết bị</button>
+                <button class="action-btn" style="background: var(--gray-bg); border-color: var(--gray-border);">✨ Chụp thử nghiệm</button>
+              </div>
+              <div class="watermark-preview">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span class="badge badge-gray">ẢNH HIỆN TRƯỜNG THỰC TẾ</span>
+                  <span class="badge">✓ ĐÃ ĐÓNG DẤU XÁC THỰC</span>
+                </div>
+                <div class="watermark-stamp">
+                  <div><b>HỆ THỐNG XÁC THỰC HIỆN TRƯỜNG — ĐỒNG NAI SMART CITY</b></div>
+                  <div>GPS: 10.949821, 106.854112 (Sai số: &plusmn;4m) &bull; THỜI GIAN: 15/11/2026 18:10:25</div>
+                  <div>ĐỊA BÀN: Phường Tam Hiệp &bull; HẠNG MỤC: Ổ gà / Mặt đường hư hỏng</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-black">
+              <div class="card-title">
+                <span>2. TỌA ĐỘ GPS & GOOGLE MAPS TIẾNG VIỆT</span>
+                <button class="action-btn">🎯 Lấy GPS thiết bị</button>
+              </div>
+              <div class="grid-3" style="margin-bottom: 12px;">
+                <div class="card-sky"><small>VĨ ĐỘ (LAT)</small><br/><b>10.949821</b></div>
+                <div class="card-sky"><small>KINH ĐỘ (LNG)</small><br/><b>106.854112</b></div>
+                <div class="card-sky selected"><small>TỰ ĐỘNG ĐỊNH TUYẾN</small><br/><b>Phường Tam Hiệp</b></div>
+              </div>
+              <div class="map-mock">
+                <div style="display: flex; justify-content: space-between;">
+                  <span class="badge badge-gray">Google Maps Tiếng Việt (lyrs=m & lyrs=y)</span>
+                  <span class="badge">Đường phố | Vệ tinh</span>
+                </div>
+                <div style="text-align: center; margin-top: 42px;">
+                  <div style="font-size: 28px;">📍</div>
+                  <div style="font-weight: 800; font-size: 13px;">Ghim tọa độ sự cố (Kéo thả hoặc chạm để dời vị trí)</div>
+                  <div style="font-size: 12px; color: var(--muted);">Khớp tự động: Phường Tam Hiệp (Khu vực Biên Hòa)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOCKUP 2: DÂN GỬI 2/3 -->
+      <div class="mockup-screen">
+        <div class="browser-bar">
+          <div class="browser-dots">
+            <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+          </div>
+          <div class="browser-url">http://localhost:5173/citizen — Màn 2/3 (Luồng Dân Gửi): Chọn Mục (có Mục khác), Mức độ & Ghi âm thành văn bản</div>
+          <div>Cổng Người Dân</div>
+        </div>
+        <div class="mockup-body">
+          <div class="card-black">
+            <div class="card-title">
+              <span>3. THÔNG TIN PHẢN ÁNH HẠ TẦNG (ĐÃ LƯỢC BỎ CÁC TRƯỜNG THỪA)</span>
+              <span class="badge">Khung xanh &rarr; Bấm chọn chuyển khung xám</span>
+            </div>
+
+            <p style="font-size: 12px; font-weight: 800; margin: 12px 0 6px;">CHỌN MỤC BÁO CÁO * (Bấm thử vào các ô bên dưới để xem hiệu ứng Khung Xanh &rarr; Khung Xám):</p>
+            <div class="grid-3" id="mockCategories">
+              <div class="selectable-box selected" onclick="selectExclusive(this, '#mockCategories')">
+                <div><b>Ổ gà / Mặt đường hư hỏng</b></div>
+                <small>Cam kết SLA: 24h</small>
+              </div>
+              <div class="selectable-box" onclick="selectExclusive(this, '#mockCategories')">
+                <div><b>Đèn đường hỏng / Chiếu sáng</b></div>
+                <small>Cam kết SLA: 12h</small>
+              </div>
+              <div class="selectable-box" onclick="selectExclusive(this, '#mockCategories')">
+                <div><b>Rác thải tồn đọng / Ô nhiễm</b></div>
+                <small>Cam kết SLA: 8h</small>
+              </div>
+              <div class="selectable-box" onclick="selectExclusive(this, '#mockCategories')">
+                <div><b>Ngập nước / Cống thoát nước</b></div>
+                <small>Cam kết SLA: 12h</small>
+              </div>
+              <div class="selectable-box" onclick="selectExclusive(this, '#mockCategories')">
+                <div><b>Cây ngã đổ / Dây điện võng</b></div>
+                <small>Cam kết SLA: 6h</small>
+              </div>
+              <div class="selectable-box" onclick="selectExclusive(this, '#mockCategories')">
+                <div><b>Mục khác</b></div>
+                <small>Tự nhập tên sự cố phát sinh (SLA: 24h)</small>
+              </div>
+            </div>
+
+            <p style="font-size: 12px; font-weight: 800; margin: 16px 0 6px;">MỨC ĐỘ KHẨN CẤP * (1 Ô MỤC DUY NHẤT THỂ HIỆN GẤP / VỪA / CHẬM):</p>
+            <div class="card-sky" style="padding: 12px;">
+              <div class="grid-3" id="mockUrgency">
+                <div class="selectable-box selected" onclick="selectExclusive(this, '#mockUrgency')">
+                  <div><b>GẤP</b></div>
+                  <small>Nguy hiểm, cần xử lý khẩn cấp ngay</small>
+                </div>
+                <div class="selectable-box" onclick="selectExclusive(this, '#mockUrgency')">
+                  <div><b>VỪA</b></div>
+                  <small>Ảnh hưởng sinh hoạt, xử lý tiêu chuẩn</small>
+                </div>
+                <div class="selectable-box" onclick="selectExclusive(this, '#mockUrgency')">
+                  <div><b>CHẬM</b></div>
+                  <small>Sự cố nhẹ, xử lý theo lịch định kỳ</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid-2" style="margin-top: 16px;">
+              <div>
+                <p style="font-size: 12px; font-weight: 800; margin-bottom: 6px;">ĐỊA CHỈ CỤ THỂ *:</p>
+                <select class="ui-select" style="margin-bottom: 8px;">
+                  <option>#3 - Phường Tam Hiệp (Khu vực Biên Hòa)</option>
+                  <option>#1 - Phường Trấn Biên (Khu vực Biên Hòa)</option>
+                  <option>#26 - Phường Xuân An (Khu vực Long Khánh)</option>
+                </select>
+                <input class="ui-input" value="Trước số 142 đường Đồng Khởi, KP4, Phường Tam Hiệp" />
+              </div>
+
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <span style="font-size: 12px; font-weight: 800;">TRÌNH BÀY CHI TIẾT (GHI ÂM THÀNH VĂN BẢN):</span>
+                  <button class="action-btn" style="background: var(--gray-bg); border-color: var(--gray-border);">🎙️ Đang ghi âm tiếng Việt...</button>
+                </div>
+                <textarea class="ui-textarea" rows="3">Mặt đường bong tróc tạo ổ gà sâu khoảng 15cm rộng hơn 1m ngay khúc cua, rất nguy hiểm cho người đi xe máy vào ban đêm.</textarea>
+              </div>
+            </div>
+
+            <div style="margin-top: 16px; text-align: right;">
+              <button class="mode-btn active" style="padding: 12px 24px;">✈️ GỬI HỒ SƠ TỚI UBND PHƯỜNG TAM HIỆP</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOCKUP 3: DÂN GỬI 3/3 -->
+      <div class="mockup-screen">
+        <div class="browser-bar">
+          <div class="browser-dots">
+            <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+          </div>
+          <div class="browser-url">http://localhost:5173/citizen/map — Màn 3/3 (Luồng Dân Gửi): Xác nhận Mã Hồ Sơ & Bản Đồ Công Khai</div>
+          <div>Cổng Người Dân</div>
+        </div>
+        <div class="mockup-body">
+          <div class="card-sky selected" style="margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <b>✅ Đã chuyển hồ sơ #PA-2026-009 thành công!</b>
+              <div style="font-size: 12.5px;">Đơn vị tiếp nhận: <b>UBND Phường Tam Hiệp</b> &bull; Mức độ: <b>Gấp</b> &bull; Trạng thái: <b>Chưa xử lý</b></div>
+            </div>
+            <span class="badge badge-gray">SLA cam kết: 24 giờ</span>
+          </div>
+
+          <div class="grid-2">
+            <div class="map-mock" style="min-height: 300px;">
+              <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px;">
+                <span class="badge badge-gray">Tất cả (9)</span>
+                <span class="badge">Chưa xử lý (3)</span>
+                <span class="badge">Đang xử lý (2)</span>
+                <span class="badge">Đã hoàn tất (4)</span>
+              </div>
+              <div style="padding: 20px; text-align: center;">
+                <div style="display: inline-block; padding: 8px 14px; border: 2px solid #0f172a; background: #fff; border-radius: 8px; font-weight: 800; margin-bottom: 12px;">
+                  (!) #PA-2026-009 &bull; Phường Tam Hiệp (GẤP)
+                </div>
+                <br/>
+                <div style="display: inline-block; padding: 6px 12px; border: 2px solid var(--sky-border); background: var(--sky-bg); border-radius: 8px; font-weight: 700;">
+                  (&check;) #PA-2026-005 &bull; Phường Xuân An (Đã hoàn tất 2.5h)
+                </div>
+              </div>
+            </div>
+
+            <div class="card-black">
+              <div class="card-title">
+                <span>CHI TIẾT HỒ SƠ #PA-2026-009</span>
+                <span class="badge badge-gray">MỨC ĐỘ: GẤP</span>
+              </div>
+              <p class="card-text" style="margin-bottom: 10px;">
+                <b>Hạng mục:</b> Ổ gà / Mặt đường hư hỏng<br/>
+                <b>Địa bàn:</b> Phường Tam Hiệp (Khu vực Biên Hòa)<br/>
+                <b>Địa chỉ:</b> Trước số 142 đường Đồng Khởi, KP4<br/>
+                <b>Cán bộ phụ trách:</b> Chưa phân công
+              </p>
+              <div class="card-sky">
+                <div style="font-size: 12px; font-weight: 800; margin-bottom: 4px;">NHẬT KÝ XỬ LÝ CÔNG KHAI (AUDIT TRAIL):</div>
+                <div style="font-size: 12.5px;">&bull; <b>15/11/2026 18:10</b> — Công dân gửi phản ánh kèm ảnh xác thực GPS.</div>
+                <div style="font-size: 12.5px;">&bull; <b>15/11/2026 18:10</b> — Hệ thống tự động định tuyến về UBND Phường Tam Hiệp.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOCKUP 4: CÁN BỘ 1/3 -->
+      <div class="mockup-screen">
+        <div class="browser-bar">
+          <div class="browser-dots">
+            <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+          </div>
+          <div class="browser-url">http://localhost:5173/agency/dispatch — Màn 1/3 (Luồng Cán Bộ): Bàn Điều Phối & Lọc Mức Độ Khẩn</div>
+          <div>Cổng Cơ Quan</div>
+        </div>
+        <div class="mockup-body">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px;">
+            <div>
+              <h3 style="font-size: 18px; font-weight: 800;">🔧 BÀN PHÂN CÔNG & ĐIỀU PHỐI XỬ LÝ HẠ TẦNG</h3>
+              <p style="font-size: 12.5px; color: var(--muted);">Chỉ hiển thị các hồ sơ Chưa xử lý & Đang xử lý để cán bộ tập trung điều phối</p>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <span class="badge badge-gray">Lọc: Mức độ GẤP (3)</span>
+              <span class="badge">Tất cả 95 Xã/Phường</span>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="card-sky selected">
+              <div class="card-title">
+                <span>#PA-2026-001 &bull; Phường Tam Hiệp</span>
+                <span class="badge badge-gray">MỨC ĐỘ: GẤP</span>
+              </div>
+              <p class="card-text" style="margin-bottom: 10px;">
+                <b>Ổ gà sâu nguy hiểm ngay khúc cua đường Đồng Khởi</b><br/>
+                📍 Trước số 142 đường Đồng Khởi, KP4, Phường Tam Hiệp<br/>
+                👤 Cán bộ: <i>Chưa phân công</i>
+              </p>
+              <div style="display: flex; justify-content: flex-end; gap: 8px;">
+                <button class="action-btn">👁️ Xem bản đồ</button>
+                <button class="mode-btn active" onclick="selectMockup(4)">👤 Phân Công / Nghiệm Thu &rarr;</button>
+              </div>
+            </div>
+
+            <div class="card-sky">
+              <div class="card-title">
+                <span>#PA-2026-006 &bull; Phường Long Thành</span>
+                <span class="badge badge-gray">MỨC ĐỘ: GẤP</span>
+              </div>
+              <p class="card-text" style="margin-bottom: 10px;">
+                <b>Nắp hố ga bị sập trên tuyến đường Lê Duẩn</b><br/>
+                📍 Số 88 Lê Duẩn, Phường Long Thành<br/>
+                👤 Cán bộ: <b>Võ Hoàng Nam — Thanh tra Xây dựng</b>
+              </p>
+              <div style="display: flex; justify-content: flex-end; gap: 8px;">
+                <button class="action-btn">👁️ Xem bản đồ</button>
+                <button class="mode-btn active" onclick="selectMockup(4)">👤 Phân Công / Nghiệm Thu &rarr;</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOCKUP 5: CÁN BỘ 2/3 -->
+      <div class="mockup-screen">
+        <div class="browser-bar">
+          <div class="browser-dots">
+            <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+          </div>
+          <div class="browser-url">http://localhost:5173/agency/dispatch (Modal Popup) — Màn 2/3 (Luồng Cán Bộ): Popup Phân Công & Nghiệm Thu</div>
+          <div>Cổng Cơ Quan</div>
+        </div>
+        <div class="mockup-body" style="background: #f1f5f9;">
+          <div class="card-black" style="max-width: 680px; margin: 0 auto;">
+            <div class="card-title" style="border-bottom: 2px solid var(--sky-border); padding-bottom: 10px;">
+              <div>
+                <span class="badge badge-gray">HỒ SƠ #PA-2026-001</span>
+                <div style="font-size: 18px; margin-top: 4px;">Phân Công Cán Bộ & Cập Nhật Tiến Độ Nghiệm Thu</div>
+              </div>
+              <button class="action-btn" onclick="selectMockup(3)">✕ Đóng</button>
+            </div>
+
+            <div class="card-sky" style="margin: 12px 0;">
+              <b>Ổ gà sâu nguy hiểm ngay khúc cua đường Đồng Khởi</b>
+              <div style="font-size: 12px;">Địa bàn: Phường Tam Hiệp &bull; Hạng mục: Ổ gà / Mặt đường &bull; Mức độ: <b>GẤP</b></div>
+            </div>
+
+            <div class="grid-2" style="margin-bottom: 12px;">
+              <div>
+                <label style="font-size: 11px; font-weight: 800;">CÁN BỘ CHUYÊN TRÁCH XỬ LÝ:</label>
+                <select class="ui-select" style="margin-top: 4px;">
+                  <option>Nguyễn Văn Hùng — Tổ Hạ tầng Đô thị</option>
+                  <option>Trần Quốc Bảo — Đội Duy tu Giao thông</option>
+                  <option>Lê Thị Mỹ Linh — Cán bộ Môi trường Đô thị</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size: 11px; font-weight: 800;">THỜI GIAN THỰC HIỆN (GIỜ):</label>
+                <input class="ui-input" style="margin-top: 4px;" value="3.5" />
+              </div>
+            </div>
+
+            <div style="margin-bottom: 14px;">
+              <label style="font-size: 11px; font-weight: 800;">NỘI DUNG CHỈ ĐẠO / BIÊN BẢN NGHIỆM THU HIỆN TRƯỜNG:</label>
+              <textarea class="ui-textarea" rows="3" style="margin-top: 4px;">Đã điều tổ duy tu mặt đường mang nhựa nguội xuống dặm vá khẩn cấp và lu phẳng mặt đường an toàn.</textarea>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; gap: 8px;">
+              <button class="action-btn">🕒 Chuyển "Đang Xử Lý"</button>
+              <button class="mode-btn active" onclick="selectMockup(5)">✓ Nghiệm Thu Hoàn Thành &rarr;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOCKUP 6: CÁN BỘ 3/3 -->
+      <div class="mockup-screen">
+        <div class="browser-bar">
+          <div class="browser-dots">
+            <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+          </div>
+          <div class="browser-url">http://localhost:5173/agency/completed — Màn 3/3 (Luồng Cán Bộ): Mục Hoàn Thành & Hồ Sơ Đã Nghiệm Thu</div>
+          <div>Cổng Cơ Quan</div>
+        </div>
+        <div class="mockup-body">
+          <div class="grid-3" style="margin-bottom: 16px;">
+            <div class="card-sky selected">
+              <small>TỔNG HỒ SƠ ĐÃ NGHIỆM THU</small>
+              <div class="kpi-big">5 Hồ sơ</div>
+            </div>
+            <div class="card-sky">
+              <small>THỜI GIAN XỬ LÝ TRUNG BÌNH</small>
+              <div class="kpi-big">5.8 Giờ</div>
+            </div>
+            <div class="card-sky">
+              <small>HỒ SƠ MỨC ĐỘ GẤP ĐÃ XONG</small>
+              <div class="kpi-big">3 Hồ sơ</div>
+            </div>
+          </div>
+
+          <div class="card-black">
+            <div class="card-title">
+              <span>✓ ĐÃ HOÀN TẤT &bull; #PA-2026-005 &bull; Phường Xuân An (Khu vực Long Khánh)</span>
+              <span class="badge badge-gray">Hoàn tất trong: 2.5 giờ</span>
+            </div>
+            <p class="card-text">
+              <b>Sự cố:</b> Nhánh cây cổ thụ gãy treo lơ lửng trên đường dây điện đường Hùng Vương.<br/>
+              <b>Cán bộ xử lý:</b> Nguyễn Văn Hùng — Tổ Hạ tầng Đô thị<br/>
+              <b>Biên bản nghiệm thu:</b> Đã phối hợp Điện lực cắt tỉa, hạ nhánh cây an toàn và thu dọn hiện trường.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOCKUP 7: DASHBOARD CÔNG KHAI 1/1 -->
+      <div class="mockup-screen">
+        <div class="browser-bar">
+          <div class="browser-dots">
+            <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+          </div>
+          <div class="browser-url">http://localhost:5173/agency/area-stats & /agency/ranking — Màn 7: Dashboard Công Khai Toàn Tỉnh</div>
+          <div>Dashboard Công Khai</div>
+        </div>
+        <div class="mockup-body">
+          <div class="grid-4" style="margin-bottom: 16px;">
+            <div class="card-sky selected">
+              <small>TG XỬ LÝ TB TOÀN TỈNH</small>
+              <div class="kpi-big">6.4h</div>
+              <small>Cam kết SLA &le; 24h</small>
+            </div>
+            <div class="card-sky">
+              <small>TỶ LỆ NGHIỆM THU</small>
+              <div class="kpi-big">93.2%</div>
+              <small>Tổng hợp 95 Xã/Phường</small>
+            </div>
+            <div class="card-sky">
+              <small>ĐỘ PHỦ ĐỊA BÀN</small>
+              <div class="kpi-big">95 / 95</div>
+              <small>7 Cụm khu vực</small>
+            </div>
+            <div class="card-sky">
+              <small>ĐƠN VỊ DẪN ĐẦU KPI</small>
+              <div class="kpi-big">P. Xuân An</div>
+              <small>KPI: 93.4 điểm (3.2h)</small>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div>
+              <h4 style="font-size: 14px; font-weight: 800; margin-bottom: 8px;">🗺️ THỐNG KÊ 7 CỤM KHU VỰC ĐỒNG NAI</h4>
+              <table class="std-table">
+                <thead>
+                  <tr>
+                    <th>Cụm Khu Vực</th>
+                    <th>Số Xã</th>
+                    <th>Gấp/Vừa/Chậm</th>
+                    <th>TG TB</th>
+                    <th>Tỷ lệ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><b>KV Biên Hòa</b></td><td>25</td><td>2 / 2 / 0</td><td>6.8h</td><td><b>93%</b></td></tr>
+                  <tr><td><b>KV Long Khánh</b></td><td>14</td><td>1 / 0 / 0</td><td>6.1h</td><td><b>95%</b></td></tr>
+                  <tr><td><b>KV Long Thành</b></td><td>13</td><td>1 / 0 / 0</td><td>7.2h</td><td><b>92%</b></td></tr>
+                  <tr><td><b>KV Nhơn Trạch</b></td><td>12</td><td>0 / 0 / 1</td><td>7.0h</td><td><b>93%</b></td></tr>
+                  <tr><td><b>KV Trảng Bom</b></td><td>12</td><td>0 / 0 / 1</td><td>6.9h</td><td><b>93%</b></td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div>
+              <h4 style="font-size: 14px; font-weight: 800; margin-bottom: 8px;">🏆 BẢNG XẾP HẠNG KPI 95 XÃ/PHƯỜNG (TOP ĐẦU)</h4>
+              <table class="std-table">
+                <thead>
+                  <tr>
+                    <th>Hạng</th>
+                    <th>Đơn vị Xã / Phường</th>
+                    <th>TG Xử Lý</th>
+                    <th>Điểm KPI</th>
+                    <th>Xếp loại</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><b>#1</b></td><td><b>Phường Xuân An</b> (Long Khánh)</td><td>3.2h</td><td><b>93.4</b></td><td><span class="badge badge-gray">DẪN ĐẦU</span></td></tr>
+                  <tr><td><b>#2</b></td><td><b>Xã Bảo Vinh</b> (Long Khánh)</td><td>3.5h</td><td><b>92.1</b></td><td><span class="badge badge-gray">DẪN ĐẦU</span></td></tr>
+                  <tr><td><b>#3</b></td><td><b>Phường Tân Tiến</b> (Biên Hòa)</td><td>3.8h</td><td><b>91.0</b></td><td><span class="badge badge-gray">DẪN ĐẦU</span></td></tr>
+                  <tr><td><b>#4</b></td><td><b>Phường Trấn Biên</b> (Biên Hòa)</td><td>4.1h</td><td><b>89.8</b></td><td><span class="badge badge-gray">DẪN ĐẦU</span></td></tr>
+                  <tr><td><b>#5</b></td><td><b>Phường Tam Hiệp</b> (Biên Hòa)</td><td>4.5h</td><td><b>88.5</b></td><td><span class="badge badge-gray">DẪN ĐẦU</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const pillsContainer = document.getElementById('slidePills');
+    const progressBar = document.getElementById('slideProgressBar');
+
+    // Render slide navigation pills
+    slides.forEach((slide, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'pill-btn' + (idx === 0 ? ' active' : '');
+      btn.textContent = slide.getAttribute('data-title');
+      btn.onclick = () => goToSlide(idx);
+      pillsContainer.appendChild(btn);
+    });
+
+    function goToSlide(idx) {
+      if (idx < 0) idx = slides.length - 1;
+      if (idx >= slides.length) idx = 0;
+      currentSlide = idx;
+
+      slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
+      const pills = pillsContainer.querySelectorAll('.pill-btn');
+      pills.forEach((p, i) => p.classList.toggle('active', i === currentSlide));
+
+      const pct = ((currentSlide + 1) / slides.length) * 100;
+      progressBar.style.width = pct + '%';
+    }
+
+    function nextSlide() {
+      goToSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      goToSlide(currentSlide - 1);
+    }
+
+    function switchMode(mode) {
+      const isDeck = mode === 'deck';
+      document.getElementById('viewDeck').classList.toggle('active', isDeck);
+      document.getElementById('viewMockup').classList.toggle('active', !isDeck);
+      document.getElementById('btnModeDeck').classList.toggle('active', isDeck);
+      document.getElementById('btnModeMockup').classList.toggle('active', !isDeck);
+    }
+
+    function selectMockup(index) {
+      const tabs = document.querySelectorAll('.mockup-tab-btn');
+      const screens = document.querySelectorAll('.mockup-screen');
+      tabs.forEach((t, i) => t.classList.toggle('active', i === index));
+      screens.forEach((s, i) => s.classList.toggle('active', i === index));
+    }
+
+    function selectExclusive(el, containerSelector) {
+      const container = document.querySelector(containerSelector);
+      container.querySelectorAll('.selectable-box').forEach(box => box.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      const deckActive = document.getElementById('viewDeck').classList.contains('active');
+      if (!deckActive) return;
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prevSlide();
+      }
+    });
+  </script>
+</body>
+</html>
