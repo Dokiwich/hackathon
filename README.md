@@ -1,6 +1,6 @@
 # Đồng Nai Hackathon — 4 Standalone Full-Stack Starters
 
-Kho lưu trữ được tổ chức thành **4 thư mục độc lập hoàn toàn** (mỗi thư mục chứa Frontend React 18 + Vite 5 + Tailwind CSS 3 + Backend Fastify 5 + Zod 4 + Docker + `AGENTS.md` riêng), dùng chung bộ quy chuẩn AI Agent, tối ưu token/CodeGraph, bảo mật CI/CD và script đóng gói / triển khai lên Internet.
+Kho lưu trữ được tổ chức thành **4 thư mục độc lập hoàn toàn** (mỗi thư mục chứa Frontend React 18 + Vite 5 + Tailwind CSS 3 + Backend Fastify 5 + Zod 4 + Docker + `AGENTS.md` riêng), sẵn sàng build, đóng gói `.zip` và đẩy trực tiếp lên **Cloudflare Pages** / **Cloudflare Quick Tunnel**.
 
 ## 1. Cấu Trúc 4 Đề Tài
 
@@ -11,24 +11,28 @@ Kho lưu trữ được tổ chức thành **4 thư mục độc lập hoàn to�
 | **Đề 3: OCOP Đồng Nai Lên Sàn** | [`de-3-ocop-len-san/`](de-3-ocop-len-san/AGENTS.md) | Starter Skeleton (FE + BE chuẩn cấu trúc, sẵn sàng code) | `5175` / `4003` |
 | **Đề 4: Chống Lừa 101** | [`de-4-chong-lua-101/`](de-4-chong-lua-101/AGENTS.md) | Starter Skeleton (FE + BE chuẩn cấu trúc, sẵn sàng code) | `5176` / `4004` |
 
-- **Live Portal Hub (GitHub Pages):** `https://dokiwich.github.io/hackathon/` *(sau khi bật Settings → Pages → Source: GitHub Actions)*
+## 2. Đưa Web Lên Internet Qua Cloudflare (1 Lệnh)
 
-## 2. Lệnh Thao Tác Nhanh (Chạy từ Root)
+```powershell
+# Đẩy thẳng lên Cloudflare Pages (*.pages.dev) — lần đầu tự mở trình duyệt xác nhận
+npm run cf:de2        # hoặc cf:de1 / cf:de3 / cf:de4
+
+# Hoặc mở nhanh link HTTPS tạm (*.trycloudflare.com) từ máy local
+npm run dev:de2
+npm run tunnel:de2    # (ở terminal thứ 2)
+```
+
+Hướng dẫn chi tiết (CLI, nối Git trên Cloudflare Dashboard, GitHub Actions, Custom Domain, Backend): [`docs/DEPLOY.md`](docs/DEPLOY.md).
+
+## 3. Lệnh Thao Tác Nhanh (Chạy từ Root)
 
 ```bash
-# Cài dependencies cho toàn bộ 4 Frontend & 4 Backend
+# Cài dependencies cho 4 Frontend & 4 Backend
 npm run install:all
 npm run install:backend:all
 
-# Chạy dev local từng đề (VD: Đề 2)
-npm run dev:de2
-npm run dev:api:de2
-
 # Kiểm tra toàn bộ (ESLint + Vitest + Build FE + ESLint/Test BE)
 npm run verify
-
-# Build Portal 4-trong-1 cho GitHub Pages (dist-pages/)
-npm run build:gh
 
 # Đóng gói release/<track>-dist.zip & <track>-source.zip
 npm run pack
@@ -37,23 +41,8 @@ npm run pack
 npm run codegraph:init
 ```
 
-## 3. Triển Khai Lên Internet
-
-- **Windows PowerShell:**
-  ```powershell
-  .\scripts\deploy.ps1 -App all -Target gh-pages -Prod
-  .\scripts\deploy.ps1 -App de2 -Target vercel -Prod
-  .\scripts\deploy-backend.ps1 -App de2 -Target cloudrun -Region asia-southeast1
-  ```
-- **Bash / Linux / macOS:**
-  ```bash
-  ./scripts/deploy.sh vercel --app de2 --prod
-  ./scripts/deploy-backend.sh cloudrun --app de2 --region asia-southeast1
-  ```
-
 ## 4. Tài Liệu Kiến Trúc & Quy Chuẩn AI
 - Hướng dẫn AI Agent hợp nhất: [`AGENTS.md`](AGENTS.md)
 - Kiến trúc hệ thống & ranh giới module: [`ARCHITECTURE.md`](ARCHITECTURE.md)
 - Kiến trúc thị trường full-stack cho cả 4 đề: [`docs/BLUEPRINTS_4_PROJECTS.md`](docs/BLUEPRINTS_4_PROJECTS.md)
-- Hướng dẫn đóng gói & deploy chi tiết: [`docs/DEPLOY.md`](docs/DEPLOY.md)
 - Chính sách bảo mật AI Agent & CI/CD: [`docs/agents/security.md`](docs/agents/security.md)

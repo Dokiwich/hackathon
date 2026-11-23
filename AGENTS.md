@@ -22,10 +22,10 @@ Each hackathon track lives in its own standalone Vite + React 18 + Tailwind CSS 
 | Dev server per track | `npm run dev:de1` / `dev:de2` / `dev:de3` / `dev:de4` | Ports `5174`, `5173`, `5175`, `5176` |
 | Dev backend per track | `npm run dev:api:de1` / `dev:api:de2` / `dev:api:de3` / `dev:api:de4` | Ports `4001`, `4002`, `4003`, `4004` |
 | Verify all 4 tracks | `npm run verify` | Runs frontend (`lint:all`, `test:all`, `build:all`) + `verify:backend` |
-| Build 4-in-1 Hub + Pages | `npm run build:gh` | Outputs `dist-pages/` (`index.html`, `404.html`, `de-1/`..`de-4/`) |
+| Deploy Cloudflare Pages (1 cmd) | `npm run cf:de1` / `cf:de2` / `cf:de3` / `cf:de4` | Builds & publishes `<track>/dist` to `https://<project>.pages.dev` |
+| Cloudflare Quick Tunnel | `npm run tunnel:de1..de4` / `tunnel:api:de1..de4` | Exposes local FE or BE via `https://*.trycloudflare.com` |
 | Package `.zip` releases | `npm run pack` (or `pack:de1`..`pack:de4`) | Outputs `release/<track>-dist.zip` & `<track>-source.zip` |
-| Deploy (Windows) | `.\scripts\deploy.ps1 -App <all\|de1\|de2\|de3\|de4> -Target <vercel\|cloudflare\|netlify\|gh-pages> -Prod` | Or `npm run deploy:vercel` / `deploy:cf` / `deploy:netlify` / `deploy:gh` |
-| Deploy (Bash/Linux/macOS) | `./scripts/deploy.sh <target> --app <all\|de1\|de2\|de3\|de4> --prod` | Supports same targets and aliases |
+| Deploy (other hosts / custom) | `.\scripts\deploy.ps1 -App <de1..de4> -Target <cloudflare\|vercel\|netlify> -Prod` | Bash: `./scripts/deploy.sh <target> --app <de1..de4> --prod` |
 
 ## 3. Non-Negotiable Coding & Architecture Rules
 1. **Track Isolation Rule:** When asked to work on a single track, ONLY read/edit inside that track's folder and obey its local `AGENTS.md`. Never bleed code or dependencies from one track into another.
@@ -47,7 +47,7 @@ Each hackathon track lives in its own standalone Vite + React 18 + Tailwind CSS 
 
 ## 4. Verification Before Finishing Any Change
 1. If editing one track: run `npm run lint && npm test && npm run build` inside that track folder.
-2. If editing shared deploy scripts, packaging scripts, workflows, or routing: run `npm run verify`, `npm run build:gh`, and `npm run pack`.
+2. If editing shared deploy scripts, packaging scripts, or workflows: run `npm run verify` and `npm run pack`.
 3. Inspect `git status` and `git diff` to ensure clean isolation and zero leaked secrets.
 
 ## 5. Reference Documents

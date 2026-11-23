@@ -15,10 +15,11 @@ d:\hackathon\
 │   ├── DEPLOY.md
 │   └── agents/security.md
 ├── scripts/
-│   ├── build-all-pages.mjs     # Builds all 4 tracks into dist-pages/ portal hub
-│   ├── pack.mjs                # Packages release/<track>-dist.zip & -source.zip
-│   ├── deploy.ps1              # Windows PowerShell auto-deploy (hub or single track)
-│   └── deploy.sh               # Bash auto-deploy (hub or single track)
+│   ├── deploy-cloudflare.ps1/.sh  # One-command Cloudflare Pages deploy per track
+│   ├── tunnel-cloudflare.ps1      # Instant HTTPS Quick Tunnel (*.trycloudflare.com)
+│   ├── deploy-backend.ps1/.sh     # Backend Cloud Run / Fly.io / Docker deploy
+│   ├── pack.mjs                   # Packages release/<track>-dist.zip & -source.zip
+│   └── deploy.ps1/.sh             # Unified multi-host wrapper (Cloudflare/Vercel/Netlify)
 ├── .github/                    # Copilot instructions, PR/Issue templates, CI/CD
 ├── .cursor/rules/              # Scoped Cursor rules
 └── AGENTS.md                   # Universal agent guide
