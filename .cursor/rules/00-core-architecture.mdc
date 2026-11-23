@@ -1,0 +1,15 @@
+---
+description: Core Clean Architecture, track isolation, and code quality standards across all 4 standalone tracks.
+globs:
+alwaysApply: true
+---
+# Core Architecture & Track Isolation Rules
+
+1. **Read Context First:** Read root `AGENTS.md`, `ARCHITECTURE.md`, and the active folder's `<track>/AGENTS.md` before structural edits.
+2. **Strict Track Isolation:** Never import files, styles, or dependencies across `de-1-*`, `de-2-*`, `de-3-*`, and `de-4-*`. Each folder must remain extractable as a standalone repo.
+3. **Layer Separation Inside Each Track:**
+   - Keep React components in `src/components/` focused on rendering and user events.
+   - Place pure calculations, formatters, exporters, and canvas helpers in `src/utils/` (or `src/domain/` when expanding).
+   - Keep external API / storage adapters in `src/services/` when connecting a real backend.
+4. **Small Single-Purpose Functions:** Avoid monolithic handlers and duplicated logic; extract shared helpers cleanly.
+5. **Required Check:** Verify edits with `npm run build` in the modified track (or `npm run build:all` + `npm run build:gh` from root).

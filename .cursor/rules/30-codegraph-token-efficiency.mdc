@@ -1,0 +1,18 @@
+---
+description: CodeGraph exploration, Context-Mode log compression, and token efficiency discipline across all 4 standalone tracks.
+globs:
+alwaysApply: true
+---
+# CodeGraph & Token Efficiency Rules
+
+1. **CodeGraph First (Single Round-Trip):**
+   - When the active track folder contains a `.codegraph/` index, call `codegraph_explore(projectPath="<absolute-track-path>", query="<symbols or question>", maxFiles=6)` BEFORE running grep + file-read loops.
+   - Treat verbatim source returned by `codegraph_explore` as already `Read` — do NOT re-open those same files unless they changed.
+2. **Per-Track `projectPath` Isolation:**
+   - Always scope `projectPath` to a single track (`d:\hackathon\de-1-so-tay-chi-doan`, `de-2-tai-mat-cong-dan`, `de-3-ocop-len-san`, or `de-4-chong-lua-101`) so symbols from unrelated tracks do not bloat context.
+   - If `.codegraph/` does not exist yet in that track, fall back to targeted `rg`/`Select-String` + narrow line-range `read_file`.
+3. **Context-Mode for Heavy Outputs:**
+   - For verbose test/build/audit outputs or large documentation files (`docs/BLUEPRINTS_4_PROJECTS.md`), use `context-mode` tools (`ctx_execute`, `ctx_batch_execute`, `ctx_index` + `ctx_search`) instead of dumping raw stdout or multi-hundred-line files into context.
+4. **Strict Token Hygiene:**
+   - Never read `**/package-lock.json`, `**/node_modules/`, `**/dist/`, `dist-pages/`, `release/`, `**/*.pdf`, `**/PitchDeck-Mockup/*.html`, or `**/public/pitch-deck.html` unless explicitly requested.
+   - Read only the exact line range needed before editing; batch independent reads/edits in parallel.

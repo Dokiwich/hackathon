@@ -1,0 +1,16 @@
+---
+description: Application, data privacy, export safety, and CI/CD security guardrails across all 4 tracks.
+globs:
+alwaysApply: true
+---
+# Security Rules
+
+1. **No Secrets in Code or Bundles:** Never commit `.env*`, API tokens, or private keys. Never place sensitive keys in `VITE_*` variables (they ship in public browser bundles).
+2. **XSS & Export Injection Prevention:**
+   - Never use `dangerouslySetInnerHTML`, `innerHTML`, or `eval` with user input or URL query params.
+   - Always escape HTML entities in generated `.doc` exports and neutralize CSV formula prefixes (`=`, `+`, `-`, `@`) in `.csv` exports.
+3. **Media & Simulation Safety:**
+   - Enforce MIME allowlist and size limits on image uploads (`de-2`).
+   - Use only reserved `.example.test` domains and display educational simulation banners in anti-scam training (`de-4`).
+4. **Per-Track Browser Permissions:** Respect each track's `Permissions-Policy` in `vercel.json` and `public/_headers` (`de-2` requires `geolocation=(self), camera=(self)`).
+5. **GitHub Actions Security:** Follow `docs/agents/security.md` (`permissions: contents: read`, pinned action majors, no secret exposure in fork PRs).

@@ -1,0 +1,17 @@
+# Windsurf Rules — Đồng Nai Hackathon (4 Standalone Tracks)
+
+Read root `AGENTS.md`, `ARCHITECTURE.md`, `docs/agents/security.md`, and the target folder's `<track>/AGENTS.md` before making changes.
+
+Core rules:
+- 4 independent React 18 + Vite 5 + Tailwind CSS 3 + React Router v7 apps:
+  - `de-1-so-tay-chi-doan/`
+  - `de-2-tai-mat-cong-dan/`
+  - `de-3-ocop-len-san/`
+  - `de-4-chong-lua-101/`
+- Track isolation: Only edit files inside the active track folder unless modifying shared deployment/CI scripts.
+- Backend architecture: Inside `<track>/backend/`, follow `.cursor/rules/15-backend-architecture.mdc` (`routes -> controller -> service -> repository`, Zod validation, `{ ok, data/error, requestId }` envelope, cross-module imports via `index.js` only).
+- UI language & Anti-AI-Slop: Natural Vietnamese (`Be Vietnam Pro` + `tabular-nums`); WCAG 2.2 AA (`>= 44px` touch targets); use track semantic tokens (`bg-canvas`, `bg-surface`, `bg-brand`, `border-line`), 1 Primary CTA/view, NO purple/neon gradients, NO decorative emojis, NO nested card clutter.
+- Subpath safety: Keep `basename={import.meta.env.BASE_URL}` in `src/main.jsx` and resolve `public/` files with `${import.meta.env.BASE_URL}`.
+- Security: Never commit secrets or `.env*`; no `dangerouslySetInnerHTML` on untrusted data; escape CSV formula prefixes and HTML entities in exports.
+- CodeGraph & Token Efficiency: When `.codegraph/` exists in the active track, use `codegraph_explore(projectPath="<track-path>")` first; use `context-mode` for verbose logs; avoid reading `package-lock.json`, `dist/`, `release/`, `*.pdf`, or static pitch HTML.
+- Verify edits with `npm run build` in the target folder (or `npm run build:all` + `npm run build:gh` from root).

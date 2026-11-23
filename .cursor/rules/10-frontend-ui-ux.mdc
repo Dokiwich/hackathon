@@ -1,0 +1,31 @@
+---
+description: React 18, Tailwind CSS, Anti-AI-Slop design discipline, Vietnamese typography, and WCAG 2.2 AA standards across all tracks.
+globs:
+  - "de-*/src/**/*.{js,jsx,ts,tsx,css}"
+  - "de-*/index.html"
+alwaysApply: false
+---
+# Frontend UX/UI, Anti-AI-Slop & Accessibility Rules
+
+1. **Anti-AI-Slop Banlist (Strictly Forbidden):**
+   - NO purple/indigo/pink gradients (`indigo-500`, `purple-500`, `fuchsia-*`, `pink-*`) or colored glow shadows (`shadow-purple-500/40`).
+   - NO gratuitous glassmorphism (`backdrop-blur-*` on routine cards) or deeply nested cards-inside-cards (maximum 1 `bg-surface` layer with `1px border-line` on `bg-canvas`).
+   - NO decorative emojis (`🚀`, `✨`, `🔥`, `💡`, `🎉`) in headings, nav tabs, or buttons — use crisp `lucide-react` icons only.
+   - NO generic cookie-cutter SaaS layout (4 identical gradient stat cards + 3 identical feature cards) or cliché marketing filler ("Cách mạng hóa", "Nền tảng tất cả trong một").
+
+2. **60–30–10 Color Hierarchy & Track Identity:**
+   - Follow `60% bg-canvas` / `30% bg-surface + border-line` / `10% bg-brand + semantic status`.
+   - Each screen may have **at most 1 Primary CTA** (`bg-brand text-white`); secondary actions must use bordered or ghost buttons.
+   - Use the track's semantic Tailwind tokens (`canvas`, `surface`, `ink`, `muted`, `line`, `brand`, `brand-hover`, `accent`) and match the track's domain style in `<track>/AGENTS.md`.
+
+3. **Vietnamese Typography & Tabular Numerics:**
+   - Default to `font-sans` (`Be Vietnam Pro`) with full Vietnamese diacritics and `font-mono` (`JetBrains Mono`) for tracking codes, QR tokens, and GPS coordinates.
+   - Apply `tabular-nums` to all KPI counters, prices, timestamps, and table columns.
+
+4. **Mobile-First & WCAG 2.2 AA Accessibility:**
+   - Design for `375px` viewports first; keep buttons/nav links at least `min-h-[44px]`.
+   - Use semantic landmarks, labeled form inputs (`<label htmlFor>`), visible `focus-visible` outlines, non-color-only status badges, and explicit Vietnamese loading/empty/permission-denied states.
+
+5. **Subpath, Leaflet & Canvas Hygiene:**
+   - Prefix `public/` URLs with `import.meta.env.BASE_URL`; keep `BrowserRouter` `basename={import.meta.env.BASE_URL}`.
+   - Clean up Leaflet instances and async canvas/QR effects inside `useEffect` return functions.

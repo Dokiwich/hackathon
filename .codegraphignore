@@ -1,0 +1,16 @@
+# Exclude non-code artifacts from CodeGraph indexing
+**/node_modules/
+**/dist/
+dist-pages/
+release/
+.codegraph/
+**/.codegraph/
+**/package-lock.json
+**/*.pdf
+**/*.zip
+**/*.log
+**/PitchDeck-Mockup/
+**/public/pitch-deck.html
+.env
+.env.*
+!.env.example

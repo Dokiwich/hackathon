@@ -1,0 +1,18 @@
+{
+  "name": "Sổ Tay Chi Đoàn Số — Đồng Nai",
+  "short_name": "Chi Đoàn Số",
+  "description": "Quản lý đoàn viên, chấm công QR động, xuất báo cáo Thành đoàn 1-click và nhắc lịch sinh hoạt.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#0284c7",
+  "lang": "vi",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

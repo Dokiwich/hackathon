@@ -1,0 +1,18 @@
+{
+  "name": "OCOP Đồng Nai Lên Sàn",
+  "short_name": "OCOP Đồng Nai",
+  "description": "Kết nối 150+ sản phẩm OCOP 3-4 sao Đồng Nai lên sàn TMĐT, Video Studio Template và mạng lưới Đoàn viên Affiliate.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#059669",
+  "lang": "vi",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

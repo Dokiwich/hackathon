@@ -1,0 +1,125 @@
+name: Deploy Selected App to Vercel or Cloudflare Pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      app:
+        description: Select track folder to deploy
+        required: true
+        default: de-2-tai-mat-cong-dan
+        type: choice
+        options:
+          - de-1-so-tay-chi-doan
+          - de-2-tai-mat-cong-dan
+          - de-3-ocop-len-san
+          - de-4-chong-lua-101
+      target:
+        description: Target cloud hosting provider
+        required: true
+        default: cloudflare-pages
+        type: choice
+        options:
+          - cloudflare-pages
+          - vercel
+      production:
+        description: Deploy to production environment
+        required: true
+        default: true
+        type: boolean
+      project_name:
+        description: Optional Cloudflare Pages project name (defaults to selected folder)
+        required: false
+        default: ""
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  deploy-cloudflare:
+    name: Deploy ${{ inputs.app }} to Cloudflare Pages
+    if: ${{ inputs.target == 'cloudflare-pages' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: ${{ inputs.app }}/package-lock.json
+
+      - name: Validate Cloudflare secrets
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CF_TOKEN" ] || [ -z "$CF_ACCOUNT" ]; then
+            echo "::error::Missing CLOUDFLARE_API_TOKEN or CLOUDFLARE_ACCOUNT_ID repository secrets."
+            exit 1
+          fi
+
+      - name: Install & Build selected app
+        working-directory: ${{ inputs.app }}
+        run: |
+          npm ci
+          npm run build
+
+      - name: Publish to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          APP_DIR: ${{ inputs.app }}
+          CUSTOM_PROJECT: ${{ inputs.project_name }}
+          BRANCH_FLAG: ${{ inputs.production && '--branch=main' || '--branch=preview' }}
+        run: |
+          PROJECT="${CUSTOM_PROJECT:-$APP_DIR}"
+          npx --yes wrangler@latest pages deploy "${APP_DIR}/dist" --project-name="$PROJECT" $BRANCH_FLAG
+
+  deploy-vercel:
+    name: Deploy ${{ inputs.app }} to Vercel
+    if: ${{ inputs.target == 'vercel' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: ${{ inputs.app }}/package-lock.json
+
+      - name: Validate Vercel secrets
+        env:
+          V_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          V_ORG: ${{ secrets.VERCEL_ORG_ID }}
+          V_PROJ: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          if [ -z "$V_TOKEN" ] || [ -z "$V_ORG" ] || [ -z "$V_PROJ" ]; then
+            echo "::error::Missing VERCEL_TOKEN, VERCEL_ORG_ID, or VERCEL_PROJECT_ID repository secrets."
+            exit 1
+          fi
+
+      - name: Install & Build selected app
+        working-directory: ${{ inputs.app }}
+        run: |
+          npm ci
+          npm run build
+
+      - name: Publish to Vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          APP_DIR: ${{ inputs.app }}
+          IS_PROD: ${{ inputs.production }}
+        run: |
+          if [ "$IS_PROD" = "true" ]; then
+            npx --yes vercel@latest deploy "${APP_DIR}/dist" --prod --yes --token="$VERCEL_TOKEN"
+          else
+            npx --yes vercel@latest deploy "${APP_DIR}/dist" --yes --token="$VERCEL_TOKEN"
+          fi

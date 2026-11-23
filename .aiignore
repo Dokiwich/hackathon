@@ -1,0 +1,16 @@
+# Universal AI Context Ignore (Cursor, Windsurf, Copilot, Claude, Codex, Gemini)
+**/node_modules/
+**/dist/
+dist-pages/
+release/
+.codegraph/
+**/.codegraph/
+**/package-lock.json
+**/*.pdf
+**/*.zip
+**/*.log
+**/PitchDeck-Mockup/*.html
+**/public/pitch-deck.html
+.env
+.env.*
+!.env.example

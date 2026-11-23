@@ -1,0 +1,30 @@
+---
+description: Modular Layered Backend Architecture, strict layer/module isolation, input/output contracts, and API security rules.
+globs:
+  - "de-*/backend/**/*"
+alwaysApply: false
+---
+# Backend Architecture & Strict Module Boundaries
+
+1. **Modular Layered Structure (Mandatory):**
+   Every domain feature lives under `src/modules/<feature>/` with strict layer separation:
+   - `index.js` — Public module boundary (registers routes and exports ONLY approved cross-module APIs).
+   - `<feature>.routes.js` — Route paths, middleware binding (`requireAuth`, `requireRoles`), handler wiring.
+   - `<feature>.controller.js` — Parse/validate `params`/`query`/`body` via Zod (`validateSchema`), call `service`, return `okResponse`. **FORBIDDEN:** importing `db/` or `*.repository.js`.
+   - `<feature>.service.js` — Pure business rules, ownership/RBAC assertions (`org_id`/`ward_id` anti-IDOR), orchestration across repositories or other modules' `index.js`.
+   - `<feature>.repository.js` — Parameterized SQL/ORM queries only. **FORBIDDEN:** importing `*.controller.js` or `*.routes.js`.
+   - `<feature>.schema.js` — Zod request/response schemas.
+
+2. **Strict Cross-Module Isolation:**
+   - Module A may NEVER deep-import `../module-b/*.repository.js`, `*.service.js`, `*.controller.js`, or `*.routes.js`. Cross-module calls go strictly through `../module-b/index.js`.
+   - These boundary rules are machine-enforced by `eslint.config.js` (`no-restricted-imports`).
+
+3. **Unified API Contract & Envelopes:**
+   - Prefix business APIs under `/api/v1/...`.
+   - Success: `{ ok: true, data, meta?, requestId }`.
+   - Error: `{ ok: false, error: { code, message, details? }, requestId }`.
+
+4. **Security & Reliability Invariants:**
+   - Fail-fast env validation in `src/config/env.js` (production requires `DATABASE_URL` and `JWT_SECRET >= 32` chars).
+   - Always apply Helmet, allowlisted CORS, Rate Limiting, Pino log redaction (`authorization`, `cookie`, `password`, `token`), and fail-closed `authGuard` (401/403).
+   - Never concatenate user input into SQL strings; mask stack traces in production error responses; handle `SIGINT`/`SIGTERM` cleanly.

@@ -1,0 +1,16 @@
+# Exclude heavy generated artifacts, lockfiles, and static pitch decks from AI context indexing
+**/node_modules/
+**/dist/
+dist-pages/
+release/
+.codegraph/
+**/.codegraph/
+**/package-lock.json
+**/*.pdf
+**/*.zip
+**/*.log
+**/PitchDeck-Mockup/*.html
+**/public/pitch-deck.html
+.env
+.env.*
+!.env.example
