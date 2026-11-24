@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pitch Deck (10 Slides) — Đề 1: Sổ Tay Chi Đoàn Số</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" />
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Be Vietnam Pro', system-ui, sans-serif; background: #F8FAFC; color: #0F172A; line-height: 1.55; }
+    header { background: #0066B3; color: #FFFFFF; padding: 28px 20px; }
+    .head-inner { max-width: 960px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+    h1 { margin: 0; font-size: 24px; }
+    .sub { margin: 4px 0 0; font-size: 14px; opacity: 0.9; }
+    .print-btn { min-height: 44px; padding: 10px 16px; border-radius: 10px; border: 1px solid #FFFFFF; background: transparent; color: #FFFFFF; font-weight: 700; cursor: pointer; font-family: inherit; }
+    main { max-width: 960px; margin: 24px auto; padding: 0 16px 48px; display: grid; gap: 16px; }
+    .slide { background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 16px; padding: 22px 26px; }
+    .num { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: #0066B3; text-transform: uppercase; letter-spacing: 0.04em; }
+    h2 { margin: 6px 0 10px; font-size: 19px; }
+    ul { margin: 8px 0 0 18px; color: #334155; }
+    p { margin: 6px 0 0; color: #334155; }
+    .kpi { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 12px; }
+    .kpi-box { background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: 10px; padding: 12px; }
+    .kpi-val { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 700; color: #0066B3; }
+    @media print { .print-btn { display: none; } .slide { break-inside: avoid; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="head-inner">
+      <div>
+        <h1>ĐỀ 1: SỔ TAY CHI ĐOÀN SỐ</h1>
+        <p class="sub">Pitch Deck 10 Slide — Giải pháp chuyển đổi số cho Bí thư Chi đoàn cơ sở tỉnh Đồng Nai</p>
+      </div>
+      <button type="button" class="print-btn" onclick="window.print()">In / Xuất PDF 10 Slide</button>
+    </div>
+  </header>
+  <main>
+    <section class="slide">
+      <div class="num">Slide 01 • Trang bìa</div>
+      <h2>Sổ Tay Chi Đoàn Số — Tự động hóa 4 nghiệp vụ cốt lõi cho Bí thư cơ sở</h2>
+      <p>Quản lý đoàn viên tập trung · Chấm công QR động · Sổ cái giờ Công tác xã hội · Xuất báo cáo Thành đoàn 1-click.</p>
+    </section>
+    <section class="slide">
+      <div class="num">Slide 02 • Bối cảnh &amp; Nỗi đau</div>
+      <h2>1–2 cán bộ cơ sở gánh 4 đầu việc thủ công trên Excel/Word</h2>
+      <ul>
+        <li>Danh sách đoàn viên rải rác nhiều file, dễ sai thông tin đoàn phí và chuyển sinh hoạt.</li>
+        <li>Điểm danh giấy mất 15–20 phút mỗi hoạt động tình nguyện và dễ ký hộ.</li>
+        <li>Cuối tuần/tháng mất 2–3 giờ cộng tay giờ CTXH và căn chỉnh lại biểu mẫu Word gửi Thành đoàn.</li>
+      </ul>
+    </section>
+    <section class="slide">
+      <div class="num">Slide 03 • Giải pháp</div>
+      <h2>Một nền tảng thống nhất cho cả Bí thư và Đoàn viên</h2>
+      <div class="kpi">
+        <div class="kpi-box"><div class="kpi-val">-85%</div><div>Thời gian làm báo cáo</div></div>
+        <div class="kpi-box"><div class="kpi-val">45 giây</div><div>Chu kỳ xoay mã QR động</div></div>
+        <div class="kpi-box"><div class="kpi-val">1-Click</div><div>Xuất Word (.doc) / CSV chuẩn</div></div>
+      </div>
+    </section>
+    <section class="slide">
+      <div class="num">Slide 04 • User Flow 4 bước</div>
+      <h2>Từ hiện trường tình nguyện tới báo cáo Thành đoàn chỉ trong 30 giây</h2>
+      <p>Bí thư nhập CSV / thêm đoàn viên → Tạo hoạt động và bật QR động → Đoàn viên quét QR trong 45s → Hệ thống tự cộng giờ CTXH &amp; ghi sổ cái → Bí thư bấm 1 click xuất báo cáo tuần/tháng.</p>
+    </section>
+    <section class="slide">
+      <div class="num">Slide 05 • Cơ chế QR động &amp; Thẻ số</div>
+      <h2>Chống chụp ảnh gửi hộ qua Zalo nhờ phiên token có chữ ký &amp; TTL</h2>
+      <ul>
+        <li>Mã QR chứa chữ ký phiên và hết hạn sau 45 giây — hệ thống từ chối ngay khi thử mã cũ.</li>
+        <li>Mỗi đoàn viên có Thẻ Đoàn Viên Số kèm mã QR cá nhân và nhật ký giờ CTXH minh bạch.</li>
+      </ul>
+    </section>
+    <section class="slide">
+      <div class="num">Slide 06 • Xuất báo cáo &amp; Nhắc lịch tự động</div>
+      <h2>Chuẩn thể thức Đoàn TNCS Hồ Chí Minh + Nhắc việc Zalo ZNS</h2>
+      <p>Tự động điền Quốc hiệu, Tiêu ngữ, Số công văn, Bảng kết quả hoạt động, Bảng kê đoàn phí &amp; giờ CTXH. Hỗ trợ đặt lịch lặp tuần/tháng nhắc trước 2h–48h.</p>
+    </section>
+    <section class="slide">
+      <div class="num">Slide 07 • Kiến trúc Kỹ thuật</div>
+      <h2>Modular Frontend + Fastify 5 Layered API (PostgreSQL &amp; Redis)</h2>
+      <p>Frontend React 18 + Tailwind CSS triển khai trên Cloudflare Pages; Backend Fastify 5 + Zod 4 tách 5 module (auth-rbac, members, attendance, reports, reminders) với ESLint ép ranh giới tầng.</p>
+    </section>
+    <section class="slide">
+      <div class="num">Slide 08 • Bảo mật &amp; Phân quyền</div>
+      <h2>RBAC theo cấp tổ chức + Chống XSS / CSV Formula Injection</h2>
+      <ul>
+        <li>Phân quyền rõ Bí thư (quản trị) và Đoàn viên (chỉ xem &amp; check-in).</li>
+        <li>Mọi file Word/CSV xuất ra đều escape ký tự HTML và tiền tố công thức Excel (=, +, -, @).</li>
+      </ul>
+    </section>
+    <section class="slide">
+      <div class="num">Slide 09 • Lộ trình Triển khai tại Đồng Nai</div>
+      <h2>Pilot 30 ngày tại Thành đoàn Biên Hòa → Nhân rộng toàn tỉnh</h2>
+      <p>Tuần 1–2: Nhập danh sách từ Excel cũ bằng 1 file CSV. Tuần 3–4: Áp dụng QR động cho 100% buổi sinh hoạt &amp; Chủ Nhật Xanh. Tháng 2: Liên thông số liệu trực tiếp về Thành đoàn.</p>
+    </section>
+    <section class="slide">
+      <div class="num">Slide 10 • Tác động xã hội</div>
+      <h2>Tiết kiệm >10 giờ hành chính/cán bộ/tháng</h2>
+      <p>Giải phóng cán bộ Đoàn cơ sở khỏi giấy tờ lặp lại để tập trung tổ chức phong trào thanh niên tình nguyện thiết thực.</p>
+    </section>
+  </main>
+</body>
+</html>

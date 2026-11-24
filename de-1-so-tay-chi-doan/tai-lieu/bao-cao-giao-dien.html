@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Báo cáo Giao diện & Đối chiếu Tiêu chí — Đoàn Viên Số</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    @page {
+      size: A4;
+      margin: 16mm 15mm 18mm 15mm;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Be Vietnam Pro', 'Segoe UI', Arial, sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.55;
+      color: #1E293B;
+      background: #FFFFFF;
+    }
+    a { color: #005BAC; text-decoration: underline; font-weight: 600; }
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9pt;
+      background: #F1F5F9;
+      padding: 1px 5px;
+      border-radius: 4px;
+      color: #0F172A;
+    }
+    .cover {
+      border: 1.5px solid #BFDBFE;
+      border-radius: 14px;
+      padding: 22px 24px;
+      background: linear-gradient(135deg, #F0F7FF 0%, #FFFFFF 65%, #E8F2FC 100%);
+      margin-bottom: 18px;
+    }
+    .cover-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .cover-logo {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      border: 1px solid #CBD5E1;
+      background: #fff;
+      padding: 4px;
+      object-fit: contain;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 8.5pt;
+      font-weight: 700;
+      color: #005BAC;
+      background: #E0F2FE;
+      border: 1px solid #BAE6FD;
+      padding: 2px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    h1 {
+      font-size: 18pt;
+      font-weight: 800;
+      color: #0F2A58;
+      margin: 6px 0 4px 0;
+      line-height: 1.25;
+    }
+    .subtitle { font-size: 10.5pt; color: #475569; margin: 0 0 12px 0; }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 14px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 9.5pt;
+    }
+    .meta-label { color: #64748B; font-size: 8.5pt; font-weight: 600; }
+    .meta-val { color: #0F172A; font-weight: 700; }
+    h2 {
+      font-size: 13pt;
+      font-weight: 800;
+      color: #005BAC;
+      border-bottom: 2px solid #E2E8F0;
+      padding-bottom: 4px;
+      margin: 18px 0 10px 0;
+      page-break-after: avoid;
+    }
+    h3 {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #1E293B;
+      margin: 12px 0 6px 0;
+      page-break-after: avoid;
+    }
+    p { margin: 0 0 8px 0; }
+    ul { margin: 4px 0 10px 0; padding-left: 18px; }
+    li { margin-bottom: 4px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 14px 0;
+      font-size: 9.5pt;
+      page-break-inside: auto;
+    }
+    tr { page-break-inside: avoid; }
+    th, td {
+      border: 1px solid #CBD5E1;
+      padding: 6px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #F1F5F9;
+      color: #0F2A58;
+      font-weight: 700;
+    }
+    .pill-ok {
+      display: inline-block;
+      background: #ECFDF5;
+      color: #047857;
+      border: 1px solid #A7F3D0;
+      border-radius: 999px;
+      padding: 1px 8px;
+      font-size: 8.5pt;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .pill-part {
+      display: inline-block;
+      background: #FFFBEB;
+      color: #B45309;
+      border: 1px solid #FDE68A;
+      border-radius: 999px;
+      padding: 1px 8px;
+      font-size: 8.5pt;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .fig-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 10px 0 14px 0;
+      page-break-inside: avoid;
+    }
+    .fig-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin: 10px 0 14px 0;
+      page-break-inside: avoid;
+    }
+    .fig {
+      border: 1px solid #CBD5E1;
+      border-radius: 10px;
+      padding: 6px;
+      background: #F8FAFC;
+      page-break-inside: avoid;
+      margin: 8px 0 12px 0;
+    }
+    .fig-grid-2 .fig, .fig-grid-3 .fig { margin: 0; }
+    .fig img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+      border: 1px solid #E2E8F0;
+    }
+    .fig figcaption {
+      font-size: 8.5pt;
+      color: #475569;
+      text-align: center;
+      margin-top: 5px;
+      font-weight: 600;
+    }
+    .callout {
+      border-left: 4px solid #005BAC;
+      background: #F0F7FF;
+      padding: 10px 12px;
+      border-radius: 0 8px 8px 0;
+      margin: 10px 0 12px 0;
+      page-break-inside: avoid;
+      font-size: 9.5pt;
+    }
+    .callout-warn {
+      border-left: 4px solid #D97706;
+      background: #FFFBEB;
+      padding: 10px 12px;
+      border-radius: 0 8px 8px 0;
+      margin: 10px 0 12px 0;
+      page-break-inside: avoid;
+      font-size: 9.5pt;
+    }
+    .page-break { page-break-before: always; }
+  </style>
+</head>
+<body>
+  <section class="cover">
+    <div class="cover-top">
+      <img src="../public/huy-hieu-doan.png" alt="Huy hiệu Đoàn" class="cover-logo" />
+      <div>
+        <span class="badge">Đề 1 — Chuyển đổi số trong công tác Đoàn</span>
+        <h1>BÁO CÁO GIAO DIỆN &amp; ĐỐI CHIẾU TIÊU CHÍ</h1>
+        <p class="subtitle">Hệ thống <strong>Đoàn Viên Số (Sổ Tay Chi Đoàn Số)</strong> — Giải pháp quản lý Chi đoàn khu phố, điểm danh QR + GPS và tổng hợp báo cáo</p>
+      </div>
+    </div>
+    <div class="meta-grid">
+      <div>
+        <div class="meta-label">Link truy cập trực tuyến 24/7 (Chính thức)</div>
+        <div class="meta-val"><a href="https://sotaychidoan.pages.dev">https://sotaychidoan.pages.dev</a></div>
+      </div>
+      <div>
+        <div class="meta-label">Link dự phòng song song</div>
+        <div class="meta-val"><a href="https://de-1-so-tay-chi-doan.pages.dev">https://de-1-so-tay-chi-doan.pages.dev</a></div>
+      </div>
+      <div>
+        <div class="meta-label">Kiến trúc triển khai</div>
+        <div class="meta-val">React 18 + Tailwind CSS • Cloudflare Pages API • Neon PostgreSQL (3NF)</div>
+      </div>
+      <div>
+        <div class="meta-label">Kiểm thử đã xác nhận</div>
+        <div class="meta-val">ESLint 0 lỗi • 18 test Frontend • 5 test Backend • Chrome PC &amp; Mobile</div>
+      </div>
+    </div>
+  </section>
+
+  <h2>1. Tổng quan người dùng &amp; kiến trúc phân quyền</h2>
+  <p>Hệ thống phục vụ đúng <strong>3 nhóm người dùng</strong> trong bối cảnh công tác Đoàn tại Đồng Nai (95 xã, phường), sử dụng mô hình <strong>kế thừa quyền hạn</strong>: tất cả vai trò dùng chung một bộ màn hình, chỉ hiển thị thêm chức năng tương ứng quyền được cấp thay vì nhân bản code rời rạc.</p>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:22%">Vai trò</th>
+        <th style="width:16%">Tài khoản thử</th>
+        <th style="width:42%">Phạm vi &amp; nghiệp vụ chính</th>
+        <th style="width:20%">Mục tiêu sử dụng</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Cán bộ Đoàn xã/phường</strong><br/><code>ward_officer</code></td>
+        <td><code>canbo.tamhiep</code><br/>(MK: <code>1234?A</code>)</td>
+        <td>Đăng/sửa/xóa bản tin Tổng quan; tạo sự kiện gắn tọa độ GPS &amp; bán kính; phát/đổi/đóng mã QR; xem tổng hợp toàn phường (60+ ĐV); xuất báo cáo.</td>
+        <td>Điều phối sự kiện &amp; tổng hợp số liệu toàn phường</td>
+      </tr>
+      <tr>
+        <td><strong>Bí thư chi đoàn</strong><br/><code>branch_secretary</code></td>
+        <td><code>bithu.kp5</code><br/>(MK: <code>123456</code>)</td>
+        <td>Quản lý danh sách đoàn viên Chi đoàn Khu phố 5 (thêm/sửa/xóa/nhập CSV/đoàn phí); quét QR + GPS; duyệt đơn sinh hoạt bù công nhân KCN; nhắc lịch &amp; báo cáo chi đoàn.</td>
+        <td>Thao tác nhanh trên điện thoại, giảm sổ giấy &amp; Zalo</td>
+      </tr>
+      <tr>
+        <td><strong>Đoàn viên</strong><br/><code>member</code></td>
+        <td><code>doanvien.kp5</code><br/>(MK: <code>123456</code>)</td>
+        <td>Xem bản tin Đoàn; quét QR (camera/ảnh/link) + xác thực GPS tại sự kiện; xem lịch sử &amp; giờ CTXH cá nhân; đăng ký buổi sinh hoạt bù khi trùng ca KCN.</td>
+        <td>Công nhân KCN làm ca, dễ tham gia &amp; theo dõi quyền lợi</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>2. Báo cáo chuẩn thiết kế giao diện (UX/UI)</h2>
+  <ul>
+    <li><strong>Đơn giản bề ngoài, chạm để mở chi tiết:</strong> mỗi trang chỉ hiển thị thẻ tóm tắt và chỉ số trọng tâm; biểu mẫu thêm/sửa, mã QR, chi tiết bản tin và nhật ký mở bằng cửa sổ trượt (modal) gọn gàng.</li>
+    <li><strong>Cỡ chữ vừa–lớn, khung mềm mại:</strong> chữ nội dung <code>15px–16px</code>, tiêu đề <code>20px–28px</code>, chỉ số KPI <code>24px–30px</code> (tối thiểu <code>13px</code>); thẻ bo góc <code>16px</code> (<code>rounded-2xl</code>), giới hạn chiều rộng <code>max-w-5xl</code> và khóa chống tràn ngang (<code>scrollWidth === innerWidth</code>).</li>
+    <li><strong>Màu sắc thống nhất, ngữ nghĩa rõ ràng:</strong> xanh Đoàn <code>#005BAC</code> cho nút chính; xanh ngọc <code>#0F766E</code> cho trạng thái hợp lệ/đạt; đỏ hồng cho ngoài vùng/lỗi; vàng hổ phách cho trạng thái chờ duyệt.</li>
+    <li><strong>Tối ưu cả PC và Điện thoại:</strong> PC dùng thanh bên cố định (chỉ 1 nút Cài đặt trên menu + nút Đăng xuất gọn dưới thẻ cá nhân); điện thoại dùng thanh điều hướng 5 nút phía dưới trong tầm ngón cái kèm menu trượt. Vùng chạm nút tối thiểu <code>44×44px</code>.</li>
+    <li><strong>Đồng bộ &amp; chống nhiễu thông tin:</strong> chuẩn hóa ngày giờ toàn hệ thống sang <code>DD/MM/YYYY</code> (giờ 24h), ẩn các nhãn kỹ thuật nội bộ trên giao diện người dùng, tách riêng lịch nhắc hành chính (chỉ Cán bộ/Bí thư xem) khỏi lịch sinh hoạt của Đoàn viên, thêm ô tìm kiếm ở Giờ CTXH và chú thích rõ <em>Số ĐV dự 3 kỳ sinh hoạt định kỳ</em>.</li>
+  </ul>
+
+  <div class="fig-grid-2">
+    <figure class="fig">
+      <img src="anh/02-dang-nhap-nhan-vai-tro.png" alt="Màn hình đăng nhập tự nhận diện vai trò" />
+      <figcaption>Hình 1. Đăng nhập tự nhận diện vai trò theo tài khoản, không cần chọn vai trò thủ công</figcaption>
+    </figure>
+    <figure class="fig">
+      <img src="anh/10-canbo-tong-quan.png" alt="Trang Tổng quan Cán bộ Đoàn" />
+      <figcaption>Hình 2. Trang Tổng quan: 4 chỉ số thực tế, hoạt động sắp tới &amp; bản tin Đoàn có ảnh</figcaption>
+    </figure>
+  </div>
+
+  <div class="fig-grid-2">
+    <figure class="fig">
+      <img src="anh/15-canbo-ma-qr.png" alt="Chi tiết mã QR ký số và bản đồ GPS" />
+      <figcaption>Hình 3. Cửa sổ Sự kiện &amp; QR: mã QR động 15 phút, radar bán kính GPS &amp; danh sách đã quét</figcaption>
+    </figure>
+    <figure class="fig">
+      <img src="anh/17-canbo-bao-cao.png" alt="Trang tổng hợp báo cáo cấp Phường" />
+      <figcaption>Hình 4. Trang Báo cáo tổng hợp từng chi đoàn, gợi ý điều hành &amp; xuất Word/CSV/PDF</figcaption>
+    </figure>
+  </div>
+
+  <div class="fig-grid-2">
+    <figure class="fig">
+      <img src="anh/32-bithu-loc-di-lam-xa.png" alt="Bộ lọc đoàn viên đi làm xa" />
+      <figcaption>Hình 5. Danh sách Đoàn viên với 3 bộ lọc trạng thái: Tại chỗ, Đi làm xa, Chuyển sinh hoạt</figcaption>
+    </figure>
+    <figure class="fig">
+      <img src="anh/34-bithu-duyet-sinh-hoat-bu.png" alt="Duyệt sinh hoạt bù ca KCN" />
+      <figcaption>Hình 6. Luồng công nhân KCN đăng ký sinh hoạt bù &amp; Bí thư Chi đoàn phê duyệt trực tiếp</figcaption>
+    </figure>
+  </div>
+
+  <h3>Trải nghiệm trên Điện thoại (390×844) &amp; Xử lý lỗi thực tế</h3>
+  <div class="fig-grid-3">
+    <figure class="fig">
+      <img src="anh/50-mobile-dang-nhap.png" alt="Đăng nhập trên điện thoại" />
+      <figcaption>Hình 7. Giao diện đăng nhập trên điện thoại</figcaption>
+    </figure>
+    <figure class="fig">
+      <img src="anh/51-mobile-tong-quan.png" alt="Tổng quan trên điện thoại" />
+      <figcaption>Hình 8. Tổng quan + thanh điều hướng 5 nút phía dưới</figcaption>
+    </figure>
+    <figure class="fig">
+      <img src="anh/52-mobile-quet-qr.png" alt="Quét QR trên điện thoại" />
+      <figcaption>Hình 9. Màn hình mở Camera / Tải ảnh QR</figcaption>
+    </figure>
+  </div>
+
+  <div class="page-break"></div>
+
+  <h2>3. Đối chiếu chi tiết tiêu chí chấm &amp; điểm cộng (Thang điểm 100)</h2>
+  <p>Bảng dưới đây đối chiếu từng hạng mục trong Phiếu tiêu chí (<em>Đề 1 — Đoàn Viên Số</em>) với hiện trạng thực tế đã triển khai tại <a href="https://sotaychidoan.pages.dev">https://sotaychidoan.pages.dev</a>.</p>
+
+  <h3>3.1. Bốn nhóm tiêu chí chấm điểm</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:22%">Tiêu chí (Điểm)</th>
+        <th style="width:14%">Mức đáp ứng</th>
+        <th style="width:64%">Bằng chứng thực tế &amp; điểm lưu ý minh bạch</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1. Hiểu vấn đề &amp; người dùng</strong> (25đ)</td>
+        <td><span class="pill-ok">Đạt đầy đủ</span></td>
+        <td>Đủ 3 nhóm người dùng (Bí thư 27 tuổi, Đoàn viên công nhân KCN làm ca, Cán bộ xã/phường). Giải quyết đúng nỗi đau sổ giấy/nhóm Zalo bằng QR + GPS, bộ lọc cư trú và tổng hợp báo cáo 1 bấm.</td>
+      </tr>
+      <tr>
+        <td><strong>2. Thiết kế giải pháp UX/UI</strong> (30đ)</td>
+        <td><span class="pill-ok">Đạt</span><br/><span class="pill-part">Một phần đối tượng</span></td>
+        <td>Luồng thao tác ngắn (3 bước quét QR → GPS → cộng giờ); chữ vừa–lớn ≥13px; đủ trạng thái trống &amp; thông báo lỗi cụ thể; hiển thị chuẩn cả PC &amp; Mobile. <em>Lưu ý:</em> chưa có chế độ chữ cực lớn/đọc giọng nói riêng cho người cao tuổi.</td>
+      </tr>
+      <tr>
+        <td><strong>3. Tính sáng tạo</strong> (20đ)</td>
+        <td><span class="pill-ok">Đạt</span></td>
+        <td>Xác thực 2 lớp <strong>QR ký số HMAC-SHA256</strong> (đổi mỗi 15 phút) kết hợp <strong>GPS Haversine</strong> thật (đã gỡ hoàn toàn nút giả lập GPS để chống gian lận), radar trực quan và luồng <strong>sinh hoạt bù ca KCN</strong>. <em>Lưu ý:</em> phần gợi ý báo cáo dùng luật thống kê theo ngưỡng, chưa phải mô hình AI/ML.</td>
+      </tr>
+      <tr>
+        <td><strong>4. Tính khả thi, tác động</strong> (25đ)</td>
+        <td><span class="pill-ok">Đạt đầy đủ</span></td>
+        <td>Chạy thực tế 24/7 trên nền web không cần cài app, chi phí vận hành thấp, dữ liệu Neon PostgreSQL chuẩn hóa 3NF, bảo mật mật khẩu <code>scrypt</code>, JWT kiểm tra trạng thái sống và lọc chống XSS/SVG/CSV. Dễ nhân rộng cho 95 xã, phường.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>3.2. Kiểm tra 06 màn hình bắt buộc, dữ liệu mẫu &amp; 03 điểm cộng</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:36%">Hạng mục đề bài</th>
+        <th style="width:14%">Trạng thái</th>
+        <th style="width:50%">Vị trí &amp; kiểm chứng trên web</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Màn hình 1: Đăng nhập theo vai trò</td>
+        <td><span class="pill-ok">Đủ (1/6)</span></td>
+        <td><code>/</code> khi chưa đăng nhập — tự nhận diện vai trò từ máy chủ xác thực, giao diện tinh gọn.</td>
+      </tr>
+      <tr>
+        <td>Màn hình 2: Trang chủ chi đoàn (số ĐV, hoạt động sắp tới)</td>
+        <td><span class="pill-ok">Đủ (2/6)</span></td>
+        <td><strong>Tổng quan</strong> — hiện số ĐV tại chỗ/đi xa, 3 kỳ gần nhất, hoạt động sắp tới và bản tin.</td>
+      </tr>
+      <tr>
+        <td>Màn hình 3: Tạo buổi sinh hoạt &amp; mã QR điểm danh</td>
+        <td><span class="pill-ok">Đủ (3/6)</span></td>
+        <td><strong>Sự kiện &amp; QR</strong> (Cán bộ) — tạo sự kiện, tọa độ/bán kính GPS, phát/đổi/đóng QR.</td>
+      </tr>
+      <tr>
+        <td>Màn hình 4: Đoàn viên quét QR, xem lịch sử tham gia</td>
+        <td><span class="pill-ok">Đủ (4/6)</span></td>
+        <td><strong>Quét QR &amp; Bù</strong> — quét camera/ảnh/link + GPS, có thẻ <em>Lịch sử tham gia cá nhân</em>.</td>
+      </tr>
+      <tr>
+        <td>Màn hình 5: Danh sách ĐV có bộ lọc 3 trạng thái</td>
+        <td><span class="pill-ok">Đủ (5/6)</span></td>
+        <td><strong>Đoàn viên</strong> — lọc <em>Đang ở địa phương / Đi làm xa / Chuyển sinh hoạt</em> + tìm kiếm.</td>
+      </tr>
+      <tr>
+        <td>Màn hình 6: Tổng hợp Đoàn xã/phường &amp; xuất báo cáo</td>
+        <td><span class="pill-ok">Đủ (6/6)</span></td>
+        <td><strong>Báo cáo</strong> — tỷ lệ sinh hoạt từng chi đoàn, xuất Word/CSV/Bản in PDF A4.</td>
+      </tr>
+      <tr>
+        <td>Điểm cộng 1: Đoàn viên làm ca chọn buổi sinh hoạt bù</td>
+        <td><span class="pill-ok">Đủ</span></td>
+        <td>Tab <em>Đăng ký Sinh hoạt bù (Làm ca)</em> liên thông sang Bí thư &amp; Cán bộ duyệt.</td>
+      </tr>
+      <tr>
+        <td>Điểm cộng 2: Nhắc lịch tự động</td>
+        <td><span class="pill-part">Một phần</span></td>
+        <td>Có tạo lịch, bật/tắt tự động và xem trước mẫu tin Zalo; chưa kết nối gửi Zalo OA thật.</td>
+      </tr>
+      <tr>
+        <td>Điểm cộng 3: Tích điểm thi đua từ hoạt động tình nguyện</td>
+        <td><span class="pill-ok">Đủ</span></td>
+        <td>Điểm danh QR + GPS thành công tự ghi sổ cái điểm thi đua &amp; xếp hạng tại <strong>Giờ CTXH</strong>.</td>
+      </tr>
+      <tr>
+        <td>Dữ liệu mẫu chuẩn đề (46 ĐV: 31·12·3; 3 kỳ: 28·19·33)</td>
+        <td><span class="pill-ok">Có trong DB</span></td>
+        <td>Đã nạp chuẩn trong script seed; khi chạy thử nghiệm thực tế số lượt có thể tăng thêm theo lượt bấm test.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>4. Các điểm đã gia cố sau kiểm thử thực tế &amp; lưu ý trình bày</h2>
+  <div class="callout" style="margin-bottom:10px;">
+    <strong>Đã khắc phục từ phản hồi kiểm thử thực tế:</strong> gỡ bỏ nút giả lập GPS chống điểm danh hộ; ẩn nhắc việc nội bộ (thu đoàn phí/chốt báo cáo) khỏi tài khoản Đoàn viên; đổi nhãn trạng thái <em>Nhắc tự động</em> sang badge tĩnh tránh nhầm nút bấm; thêm xóa sự kiện &amp; xóa lịch nhắc; bỏ nút Cài đặt/Đổi mật khẩu trùng lặp; sửa công thức tỷ lệ sinh hoạt trung bình, lọc báo cáo đúng tháng, điền đúng tên người ký Word và chuẩn hóa ngày <code>DD/MM/YYYY</code>.
+  </div>
+  <div class="callout-warn">
+    <ul style="margin:0;">
+      <li><strong>Nhắc lịch tự động:</strong> hiện mới lưu cấu hình lịch, trạng thái bật/tắt và bản xem trước tin nhắn; chưa tích hợp API gửi tin nhắn thật qua Zalo OA/SMS.</li>
+      <li><strong>Xuất Word/PDF:</strong> nút xuất Word tạo tệp <code>.doc</code> chuẩn HTML (đã khóa chống rớt dòng tiêu đề/ngày tháng và lặp lại đầu bảng qua trang, chưa phải gói nén <code>.docx</code>); PDF xuất qua hộp thoại in A4 của trình duyệt.</li>
+      <li><strong>Kiểm thử GPS tại địa điểm bất kỳ:</strong> hệ thống chỉ nhận tọa độ GPS thật từ trình duyệt; khi kiểm thử ở xa Phường Tam Hiệp, Cán bộ Đoàn dùng nút <em>“Dời tâm GPS về vị trí của tôi”</em> hoặc <em>“Mở rộng bán kính 2km”</em> trong chi tiết sự kiện để quét thật tại chỗ.</li>
+      <li><strong>Sản phẩm số 1 và số 3 theo quy chế cuộc thi:</strong> trang quy chế đính kèm không nêu chi tiết định danh của 2 sản phẩm này, cần đối chiếu danh mục nộp bài của Ban tổ chức.</li>
+    </ul>
+  </div>
+</body>
+</html>

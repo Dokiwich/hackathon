@@ -1,6 +1,6 @@
-# AGENTS.md — Đề 1: Sổ Tay Chi Đoàn Số (Starter Skeleton)
+# AGENTS.md — Đề 1: Sổ Tay Chi Đoàn Số (Full MVP)
 
-> Standalone starter template for `de-1-so-tay-chi-doan/`. Inherits root security, accessibility, and deployment rules in `../AGENTS.md`.
+> Standalone track for `de-1-so-tay-chi-doan/`. Inherits root security, accessibility, and deployment rules in `../AGENTS.md`.
 
 ## 1. Bối cảnh & Đề bài
 - **Bối cảnh:** Mỗi Đoàn cơ sở chỉ 1–2 cán bộ nhưng phải quản lý danh sách đoàn viên, chấm công tình nguyện, báo cáo tuần/tháng về Thành đoàn, kê khai giờ công tác xã hội — toàn bộ làm thủ công trên Excel/Word dễ sai sót.
@@ -9,10 +9,10 @@
   2. Chấm công hoạt động tình nguyện tự động (QR động chống điểm danh hộ + cộng giờ CTXH).
   3. Xuất báo cáo tuần/tháng đúng mẫu Thành đoàn chỉ trong 1 click (`.doc` / `.csv`).
   4. Nhắc việc tự động theo lịch sinh hoạt chi đoàn.
-- **Sản phẩm cần nộp:** Pitch deck 10 slide (`public/pitch-deck.html`), User flow, 5–7 màn hình chính (Dashboard, Danh sách đoàn viên, Chấm công QR, Xuất báo cáo, Nhắc lịch).
+- **Sản phẩm đã hoàn thiện:** Pitch deck 10 slide (`public/pitch-deck.html`), User flow (`UserFlowView.jsx`), 6 màn hình chính (Dashboard, Danh sách đoàn viên & Thẻ QR số, Chấm công QR động 45 giây, Giờ công ích, Xuất báo cáo Word/CSV/In A4, Nhắc lịch định kỳ & Zalo ZNS), cùng Backend Fastify 5 + Zod 4 với 5 module (`auth-rbac`, `members`, `attendance`, `reports`, `reminders`) và cấu hình Cloudflare Static Assets (`wrangler.jsonc`).
 
-## 2. Cấu trúc Thư mục Sẵn sàng Code
-- `src/App.jsx` — Điểm nối `<Routes>` (hiện là skeleton tối giản, sẵn sàng thêm routes mới).
+## 2. Cấu trúc Thư mục (Frontend + Backend)
+- `src/App.jsx` — Điểm nối `<Routes>` cho toàn bộ 6 màn hình + User Flow + Role Switcher (Bí thư / Đoàn viên).
 - `src/main.jsx` — Đã cấu hình `<ErrorBoundary>` + `<BrowserRouter basename={import.meta.env.BASE_URL}>`.
 - `src/components/` — Chứa màn hình chính & UI components (hiện có `ErrorBoundary.jsx`).
 - `src/data/` — Chứa dữ liệu mẫu đoàn viên, hoạt động, lịch sinh hoạt.

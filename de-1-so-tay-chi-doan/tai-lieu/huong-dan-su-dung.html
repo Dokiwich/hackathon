@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hướng dẫn sử dụng — Đoàn Viên Số</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    @page {
+      size: A4;
+      margin: 16mm 15mm 18mm 15mm;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Be Vietnam Pro', 'Segoe UI', Arial, sans-serif;
+      font-size: 10pt;
+      line-height: 1.48;
+      color: #1E293B;
+      background: #FFFFFF;
+    }
+    a { color: #005BAC; text-decoration: underline; font-weight: 600; }
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9pt;
+      background: #F1F5F9;
+      padding: 1px 5px;
+      border-radius: 4px;
+      color: #0F172A;
+    }
+    .cover {
+      border: 1.5px solid #BFDBFE;
+      border-radius: 14px;
+      padding: 20px 24px;
+      background: linear-gradient(135deg, #F0F7FF 0%, #FFFFFF 65%, #E8F2FC 100%);
+      margin-bottom: 16px;
+    }
+    .cover-top { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
+    .cover-logo {
+      width: 50px; height: 50px; border-radius: 12px;
+      border: 1px solid #CBD5E1; background: #fff; padding: 4px; object-fit: contain;
+    }
+    .badge {
+      display: inline-block; font-size: 8.5pt; font-weight: 700; color: #005BAC;
+      background: #E0F2FE; border: 1px solid #BAE6FD; padding: 2px 10px;
+      border-radius: 999px; text-transform: uppercase;
+    }
+    h1 { font-size: 18pt; font-weight: 800; color: #0F2A58; margin: 5px 0 4px 0; }
+    .subtitle { font-size: 10.5pt; color: #475569; margin: 0 0 12px 0; }
+    .link-box {
+      background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 10px;
+      padding: 10px 14px; font-size: 9.8pt; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    }
+    h2 {
+      font-size: 12.5pt;
+      font-weight: 800;
+      color: #005BAC;
+      border-bottom: 2px solid #E2E8F0;
+      padding-bottom: 4px;
+      margin: 13px 0 8px 0;
+      page-break-after: avoid;
+    }
+    h3 { font-size: 10.8pt; font-weight: 700; color: #0F2A58; margin: 10px 0 5px 0; page-break-after: avoid; }
+    p { margin: 0 0 6px 0; }
+    ol, ul { margin: 3px 0 8px 0; padding-left: 20px; }
+    li { margin-bottom: 3px; }
+    table { width: 100%; border-collapse: collapse; margin: 8px 0 14px 0; font-size: 9.5pt; }
+    tr { page-break-inside: avoid; }
+    th, td { border: 1px solid #CBD5E1; padding: 6px 8px; text-align: left; vertical-align: top; }
+    th { background: #F1F5F9; color: #0F2A58; font-weight: 700; }
+    .fig-grid-2 {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+      margin: 6px 0 10px 0; page-break-inside: avoid;
+    }
+    .fig {
+      border: 1px solid #CBD5E1; border-radius: 10px; padding: 6px;
+      background: #F8FAFC; page-break-inside: avoid; margin: 0;
+    }
+    .fig img { width: 100%; height: auto; display: block; border-radius: 6px; border: 1px solid #E2E8F0; }
+    .fig figcaption { font-size: 8.5pt; color: #475569; text-align: center; margin-top: 5px; font-weight: 600; }
+    .step-card {
+      border: 1px solid #E2E8F0; border-radius: 10px; padding: 10px 14px;
+      background: #F8FAFC; margin-bottom: 10px; page-break-inside: avoid;
+    }
+    .tip {
+      border-left: 4px solid #0F766E; background: #ECFDF5;
+      padding: 10px 12px; border-radius: 0 8px 8px 0; margin: 10px 0;
+      page-break-inside: avoid; font-size: 9.5pt;
+    }
+    .warn {
+      border-left: 4px solid #E11D48; background: #FFF1F2;
+      padding: 10px 12px; border-radius: 0 8px 8px 0; margin: 10px 0;
+      page-break-inside: avoid; font-size: 9.5pt;
+    }
+    .page-break { page-break-before: always; }
+  </style>
+</head>
+<body>
+  <section class="cover">
+    <div class="cover-top">
+      <img src="../public/huy-hieu-doan.png" alt="Huy hiệu Đoàn" class="cover-logo" />
+      <div>
+        <span class="badge">Tài liệu hướng dẫn sử dụng chi tiết</span>
+        <h1>SỔ TAY HƯỚNG DẪN — ĐOÀN VIÊN SỐ</h1>
+        <p class="subtitle">Hướng dẫn từng bước cho 3 vai trò: Cán bộ Đoàn xã/phường, Bí thư chi đoàn và Đoàn viên</p>
+      </div>
+    </div>
+    <div class="link-box">
+      <div><strong>Địa chỉ sử dụng (PC &amp; Điện thoại):</strong><br/><a href="https://sotaychidoan.pages.dev">https://sotaychidoan.pages.dev</a></div>
+      <div><strong>Địa chỉ dự phòng:</strong><br/><a href="https://de-1-so-tay-chi-doan.pages.dev">https://de-1-so-tay-chi-doan.pages.dev</a></div>
+    </div>
+  </section>
+
+  <h2>1. Đăng nhập &amp; đổi mật khẩu (dùng chung cho cả 3 vai trò)</h2>
+  <div class="step-card">
+    <ol style="margin-bottom:0;">
+      <li>Mở trình duyệt <strong>Chrome</strong> (Android/PC) hoặc <strong>Safari</strong> (iPhone), truy cập <a href="https://sotaychidoan.pages.dev">https://sotaychidoan.pages.dev</a>.</li>
+      <li>Nhập <strong>Tên đăng nhập</strong>, <strong>Số điện thoại</strong> hoặc <strong>Mã đoàn viên</strong> vào ô đầu tiên. Hệ thống tự nhận diện quyền hạn (hiện nhãn xanh dưới ô nhập).</li>
+      <li>Nhập <strong>Mật khẩu</strong>, giữ tích <em>Ghi nhớ đăng nhập</em> nếu dùng máy cá nhân, rồi bấm <strong>Đăng nhập</strong>.</li>
+      <li><strong>Đổi mật khẩu:</strong> vào mục <strong>Cài đặt</strong> → <strong>Đổi mật khẩu tài khoản</strong> (hoặc bấm <em>Đổi mật khẩu?</em> ngay ở màn hình đăng nhập) → nhập mật khẩu cũ, mật khẩu mới (tối thiểu 6 ký tự) và xác nhận.</li>
+    </ol>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:24%">Vai trò</th>
+        <th style="width:20%">Tên đăng nhập</th>
+        <th style="width:18%">Mã ĐV / SĐT</th>
+        <th style="width:38%">Ghi chú tài khoản thử</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Cán bộ Đoàn xã/phường</strong></td>
+        <td><code>canbo.tamhiep</code></td>
+        <td><code>CB-TH-001</code> / <code>0912345900</code></td>
+        <td>Mật khẩu: <code>1234?A</code></td>
+      </tr>
+      <tr>
+        <td><strong>Bí thư chi đoàn (KP5)</strong></td>
+        <td><code>bithu.kp5</code></td>
+        <td><code>DN-KP5-001</code> / <code>0912345001</code></td>
+        <td>Mật khẩu: <code>123456</code></td>
+      </tr>
+      <tr>
+        <td><strong>Đoàn viên (KP5)</strong></td>
+        <td><code>doanvien.kp5</code></td>
+        <td><code>DN-KP5-002</code> / <code>0912345002</code></td>
+        <td>Mật khẩu: <code>123456</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="fig-grid-2">
+    <figure class="fig">
+      <img src="anh/01-dang-nhap.png" alt="Màn hình đăng nhập hệ thống" />
+      <figcaption>Bước 1: Giao diện đăng nhập trên máy tính</figcaption>
+    </figure>
+    <figure class="fig">
+      <img src="anh/20-cai-dat.png" alt="Màn hình cài đặt tài khoản" />
+      <figcaption>Mục Cài đặt: đổi mật khẩu, xem quyền kế thừa, đăng xuất</figcaption>
+    </figure>
+  </div>
+
+  <div class="page-break"></div>
+
+  <h2>2. Hướng dẫn cho Cán bộ Đoàn xã/phường</h2>
+  <h3>2.1. Quản lý bản tin Đoàn tại mục Tổng quan</h3>
+  <ol>
+    <li>Sau khi đăng nhập <code>canbo.tamhiep</code>, màn hình <strong>Tổng quan</strong> hiển thị bảng tin Đoàn cho toàn thể Bí thư và Đoàn viên cùng xem.</li>
+    <li>Bấm <strong>+ Đăng tin mới</strong> → nhập tiêu đề, chọn chuyên mục (<em>Phong trào / Chỉ đạo / KP5 / Thông báo</em>), chọn ảnh mẫu hoặc tải ảnh từ máy, nhập tóm tắt &amp; nội dung → bấm <strong>Đăng bài viết</strong>.</li>
+    <li>Bấm trực tiếp vào một bài viết bất kỳ để đọc chi tiết, hoặc bấm <strong>Sửa</strong> / <strong>Xóa</strong> ngay trong cửa sổ bài viết.</li>
+  </ol>
+
+  <h3>2.2. Tạo sự kiện, phát mã QR động &amp; thiết lập bán kính GPS</h3>
+  <ol>
+    <li>Vào mục <strong>Sự kiện &amp; QR</strong> trên thanh điều hướng → bấm <strong>+ Tạo sự kiện &amp; QR</strong>.</li>
+    <li>Điền <em>Tên sự kiện</em>, <em>Loại hoạt động</em>, <em>Địa điểm</em>, <em>Khung giờ</em>, <em>Giờ CTXH/Điểm thi đua</em> và <em>Bán kính GPS (m)</em> (từ 25m đến 5000m).</li>
+    <li>Tại mục <em>Tâm tọa độ GPS</em>: bấm <strong>Vị trí hiện tại</strong> để lấy tọa độ nơi đang tổ chức (hoặc bấm <strong>Tọa độ mẫu</strong>). Sau đó bấm <strong>Tạo sự kiện &amp; phát QR</strong>.</li>
+    <li>Chạm vào thẻ sự kiện vừa tạo để mở <strong>Mã QR điểm danh</strong>:
+      <ul>
+        <li><strong>Tải QR</strong>: lưu ảnh mã QR để chiếu lên màn hình hội trường hoặc gửi nhóm Zalo.</li>
+        <li><strong>Copy link</strong>: sao chép đường dẫn điểm danh nhanh gửi cho đoàn viên.</li>
+        <li><strong>Đổi QR · 15p</strong>: cấp mã QR ký số mới có hiệu lực 15 phút (chống dùng lại ảnh chụp cũ).</li>
+        <li><strong>Đóng QR</strong>: khóa điểm danh khi kết thúc buổi sinh hoạt.</li>
+        <li><strong>Dời tâm GPS về vị trí của tôi / Mở rộng bán kính 2km</strong>: dùng khi cần dời nhanh tâm sự kiện sang địa điểm tổ chức thực tế hoặc kiểm thử tại chỗ bằng GPS thật.</li>
+        <li><strong>Xóa sự kiện này</strong>: xóa bỏ sự kiện tạo nhầm để giữ sạch dữ liệu báo cáo.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <div class="fig-grid-2">
+    <figure class="fig">
+      <img src="anh/12-canbo-dang-tin.png" alt="Biểu mẫu đăng tin mới" />
+      <figcaption>Cửa sổ đăng bản tin mới kèm thư viện ảnh mẫu</figcaption>
+    </figure>
+    <figure class="fig">
+      <img src="anh/14-canbo-tao-su-kien.png" alt="Biểu mẫu tạo sự kiện và GPS" />
+      <figcaption>Tạo sự kiện gắn tọa độ GPS và bán kính cho phép</figcaption>
+    </figure>
+  </div>
+
+  <h3>2.3. Tổng hợp số liệu &amp; xuất báo cáo tháng</h3>
+  <ol>
+    <li>Vào mục <strong>Đoàn viên</strong> để xem thực lực đoàn viên toàn phường (chế độ chỉ xem).</li>
+    <li>Vào mục <strong>Báo cáo</strong>: xem tỷ lệ sinh hoạt từng chi đoàn, chọn bộ lọc đơn vị và kỳ báo cáo (Tuần/Tháng — hệ thống tự lọc đúng các hoạt động thuộc tháng được chọn), đọc phần <em>Trợ lý phân tích số liệu</em>.</li>
+    <li>Bấm <strong>Xuất Word (.doc)</strong> (tự động điền họ tên &amp; chức danh tài khoản đang đăng nhập làm người ký), <strong>Xuất CSV</strong> (mở bằng Excel) hoặc <strong>Bản in A4</strong> (chọn <em>Lưu dưới dạng PDF</em> trong hộp thoại in).</li>
+  </ol>
+
+  <div class="page-break"></div>
+
+  <h2>3. Hướng dẫn cho Bí thư Chi đoàn</h2>
+  <h3>3.1. Theo dõi Tổng quan &amp; quản lý 46 đoàn viên Khu phố 5</h3>
+  <ol>
+    <li>Đăng nhập <code>bithu.kp5</code>. Mục <strong>Tổng quan</strong> hiện 4 thẻ: Tổng đoàn viên chi đoàn, Sự kiện đang mở QR / Đơn xin bù chờ duyệt, Lượt tham dự 3 kỳ gần nhất và Tổng giờ CTXH.</li>
+    <li>Vào mục <strong>Đoàn viên</strong>:
+      <ul>
+        <li>Chạm 4 thẻ thống kê phía trên (<em>Tất cả / Đang ở địa phương / Đi làm xa / Chuyển sinh hoạt</em>) hoặc gõ tên/mã ĐV/SĐT vào ô tìm kiếm để lọc danh sách.</li>
+        <li>Bấm <strong>+ Thêm đoàn viên</strong> để nhập từng người, hoặc <strong>Nhập CSV</strong> để thêm hàng loạt.</li>
+        <li>Chạm vào từng dòng đoàn viên để <strong>Sửa thông tin</strong>, chuyển trạng thái cư trú, <strong>Xóa</strong> hoặc bấm nhãn <strong>ĐP ✓ / Chưa ĐP</strong> để cập nhật đoàn phí.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h3>3.2. Quét QR điểm danh, duyệt sinh hoạt bù &amp; nhắc lịch</h3>
+  <ol>
+    <li>Vào <strong>Quét QR &amp; Bù</strong>: thực hiện quét QR + GPS giống Đoàn viên; cột bên phải hiển thị tiến độ đoàn viên trong Chi đoàn đã điểm danh.</li>
+    <li>Chuyển sang tab <strong>Duyệt Sinh hoạt bù ca KCN</strong>: xem lý do trùng ca của công nhân KCN và bấm <strong>Duyệt bù</strong> hoặc <strong>Từ chối</strong>.</li>
+    <li>Vào mục <strong>Nhắc lịch</strong> để tạo thông báo lịch sinh hoạt định kỳ hoặc hạn nộp báo cáo; bấm vào từng dòng để xem mẫu tin, <strong>Bật/Tắt nhắc tự động</strong>, <strong>Đánh dấu hoàn tất</strong> hoặc <strong>Xóa</strong> lịch nhắc tạo nhầm. <em>Lưu ý: tài khoản Đoàn viên chỉ nhìn thấy lịch sinh hoạt/điểm danh của mình, không thấy nhắc việc nội bộ (thu đoàn phí, chốt báo cáo).</em></li>
+  </ol>
+
+  <div class="fig-grid-2">
+    <figure class="fig">
+      <img src="anh/31-bithu-doan-vien.png" alt="Quản lý danh sách đoàn viên" />
+      <figcaption>Danh sách đoàn viên Chi đoàn KP5 và thao tác đoàn phí</figcaption>
+    </figure>
+    <figure class="fig">
+      <img src="anh/19-canbo-nhac-lich.png" alt="Quản lý nhắc lịch" />
+      <figcaption>Màn hình Nhắc lịch: tạo lịch mới và bật/tắt nhắc tự động</figcaption>
+    </figure>
+  </div>
+
+  <h2>4. Hướng dẫn cho Đoàn viên (Công nhân KCN làm ca)</h2>
+  <h3>4.1. Điểm danh 2 bước QR + GPS</h3>
+  <ol>
+    <li>Đăng nhập <code>doanvien.kp5</code>. Xem tin tức mới và lịch hoạt động tại <strong>Tổng quan</strong>.</li>
+    <li>Vào mục <strong>Quét QR &amp; Bù</strong>, chọn 1 trong 3 cách nhận mã:
+      <ul>
+        <li><strong>Mở camera quét QR:</strong> đưa camera vào mã QR do Cán bộ chiếu.</li>
+        <li><strong>Tải ảnh QR:</strong> chọn ảnh mã QR đã lưu trong máy.</li>
+        <li><strong>Dán link / chạm thẳng sự kiện đang mở:</strong> khi cán bộ gửi link qua nhóm, bấm hoặc dán trực tiếp.</li>
+      </ul>
+    </li>
+    <li>Khi hệ thống xác thực chữ ký QR thành công, bấm <strong>Lấy GPS thực tế &amp; Điểm danh</strong> và chọn <em>Cho phép Vị trí</em>. Nếu đứng trong bán kính, màn hình hiện biên nhận thành công và tự cộng giờ vào mục <strong>Giờ CTXH</strong>.</li>
+  </ol>
+
+  <div class="fig-grid-2">
+    <figure class="fig">
+      <img src="anh/42-doanvien-gps.png" alt="Xác thực GPS sau khi quét QR" />
+      <figcaption>Bước 2 điểm danh: bản đồ radar bán kính &amp; nút lấy GPS thực tế</figcaption>
+    </figure>
+    <figure class="fig">
+      <img src="anh/44-doanvien-sinh-hoat-bu.png" alt="Đăng ký sinh hoạt bù ca KCN" />
+      <figcaption>Đăng ký buổi sinh hoạt bù khi trùng ca làm việc tại KCN</figcaption>
+    </figure>
+  </div>
+
+  <h3>4.2. Đăng ký sinh hoạt bù &amp; theo dõi giờ CTXH</h3>
+  <ol>
+    <li>Tại <strong>Quét QR &amp; Bù</strong>, bấm tab <strong>Đăng ký Sinh hoạt bù (Làm ca)</strong> → chọn buổi đã vắng, chọn buổi sinh hoạt bù sắp tới (ví dụ tối Thứ 7) và ghi rõ ca làm việc → bấm <strong>Xác nhận đăng ký sinh hoạt bù</strong>.</li>
+    <li>Vào mục <strong>Giờ CTXH</strong> để xem tổng điểm thi đua, xếp loại, tìm kiếm nhanh theo tên/mã đoàn viên (ở cấp quản lý) và chạm vào từng đoàn viên để xem chi tiết ngày giờ <code>DD/MM/YYYY HH:mm</code> từng buổi đã tham gia.</li>
+  </ol>
+
+  <h2>5. Khắc phục nhanh lỗi Camera &amp; GPS trên điện thoại / máy tính</h2>
+  <div class="tip">
+    <strong>Mẹo chuẩn khi dùng trên điện thoại:</strong> Luôn mở link <a href="https://sotaychidoan.pages.dev">https://sotaychidoan.pages.dev</a> bằng trình duyệt <strong>Chrome</strong> hoặc <strong>Safari</strong>. Nếu bấm link từ tin nhắn Zalo/Messenger, hãy chọn biểu tượng <code>⋯</code> góc trên bên phải → <strong>Mở bằng trình duyệt</strong>.
+  </div>
+  <div class="warn">
+    <strong>Các lỗi thường gặp và cách xử lý trong 10 giây:</strong>
+    <ul style="margin-bottom:0;">
+      <li><strong>Android báo “Trang web không thể yêu cầu quyền của bạn”:</strong> do đang có bong bóng chat Messenger/Zalo hoặc ứng dụng ghi màn hình nổi trên màn hình. Vuốt tắt bong bóng chat nổi rồi bấm lại.</li>
+      <li><strong>Máy tính không có webcam:</strong> dùng nút <strong>Tải ảnh QR</strong>, <strong>Dán link</strong> hoặc chạm trực tiếp vào thẻ sự kiện đang mở bên dưới khung quét.</li>
+      <li><strong>Báo “Ngoài bán kính sự kiện”:</strong> nghĩa là bạn đang đứng xa địa điểm tổ chức (hoặc Wi-Fi máy tính định vị lệch trạm). Di chuyển lại gần khu vực tổ chức rồi bấm lấy GPS lại; nếu kiểm thử tại chỗ ngồi hiện tại, nhờ Cán bộ Đoàn mở chi tiết sự kiện và bấm <em>“Dời tâm GPS về vị trí của tôi”</em> hoặc <em>“Mở rộng bán kính 2km”</em> để quét bằng GPS thật.</li>
+    </ul>
+  </div>
+</body>
+</html>

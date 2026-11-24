@@ -1,5 +1,8 @@
+import { loadDotEnv } from './config/loadDotEnv.js';
 import { parseEnv } from './config/env.js';
 import { buildApp } from './app.js';
+
+loadDotEnv();
 
 const env = parseEnv();
 const app = await buildApp(env);

@@ -4,6 +4,7 @@ set -euo pipefail
 APP="de2"
 PROJECT_NAME=""
 PREVIEW=false
+TEMPORARY=false
 SKIP_INSTALL=false
 
 while [[ $# -gt 0 ]]; do
@@ -24,8 +25,12 @@ while [[ $# -gt 0 ]]; do
       SKIP_INSTALL=true
       shift
       ;;
+    --temporary)
+      TEMPORARY=true
+      shift
+      ;;
     -h|--help)
-      echo "Usage: $0 [--app de1|de2|de3|de4|<folder>] [--project <name>] [--preview] [--skip-install]"
+      echo "Usage: $0 [--app de1|de2|de3|de4|<folder>] [--project <name>] [--preview] [--temporary] [--skip-install]"
       exit 0
       ;;
     *)
@@ -57,8 +62,11 @@ if [[ "$SKIP_INSTALL" == "false" && ! -d "${APP_ROOT}/node_modules" ]]; then
 fi
 
 echo "[2/4] Checking Cloudflare authentication..."
-if [[ -z "${CLOUDFLARE_API_TOKEN:-}" ]]; then
-  if ! npx --yes wrangler@latest whoami >/dev/null 2>&1; then
+if [[ "$TEMPORARY" == true ]]; then
+  echo "Temporary mode enabled (--temporary): skipping account login check."
+elif [[ -z "${CLOUDFLARE_API_TOKEN:-}" ]]; then
+  WHOAMI_OUT="$(npx --yes wrangler@latest whoami 2>&1 || true)"
+  if echo "$WHOAMI_OUT" | grep -qi "not authenticated"; then
     npx --yes wrangler@latest login
   fi
 fi
@@ -69,20 +77,34 @@ echo "[3/4] Building production bundle (${FOLDER}, VITE_BASE_PATH=/)..."
 VITE_BASE_PATH="/" npm --prefix "$FOLDER" run build
 
 DIST_DIR="${APP_ROOT}/dist"
-for req in index.html _redirects _headers; do
+for req in index.html _headers; do
   if [[ ! -f "${DIST_DIR}/${req}" ]]; then
-    echo "Missing required Cloudflare Pages asset: ${DIST_DIR}/${req}" >&2
+    echo "Missing required Cloudflare asset: ${DIST_DIR}/${req}" >&2
     exit 1
   fi
 done
+
+if [[ -f "${DIST_DIR}/_redirects" ]]; then
+  rm -f "${DIST_DIR}/_redirects"
+  echo "Removed generated dist/_redirects (Cloudflare Pages & Workers Static Assets handle SPA fallback natively; '/* /index.html 200' causes API error 100324)."
+fi
 
 BRANCH="main"
 if [[ "$PREVIEW" == "true" ]]; then
   BRANCH="preview"
 fi
 
-echo "[4/4] Publishing '${FOLDER}/dist' to Cloudflare Pages project '${EFFECTIVE_PROJECT}' (branch: ${BRANCH})..."
-npx --yes wrangler@latest pages project create "$EFFECTIVE_PROJECT" --production-branch=main >/dev/null 2>&1 || true
-npx --yes wrangler@latest pages deploy "$DIST_DIR" --project-name="$EFFECTIVE_PROJECT" --branch="$BRANCH"
-
-echo "[DONE] Cloudflare Pages live URL: https://${EFFECTIVE_PROJECT}.pages.dev"
+if [[ "$TEMPORARY" == true ]]; then
+  if [[ ! -f "${APP_ROOT}/wrangler.jsonc" && ! -f "${APP_ROOT}/wrangler.json" && ! -f "${APP_ROOT}/wrangler.toml" ]]; then
+    echo "Missing wrangler.jsonc, wrangler.json, or wrangler.toml in ${APP_ROOT} for --temporary deploy." >&2
+    exit 1
+  fi
+  echo "[4/4] Publishing '${FOLDER}/dist' as temporary Cloudflare Workers Static Assets..."
+  (cd "$APP_ROOT" && npx --yes wrangler@latest deploy --temporary)
+  echo "[DONE] Temporary Cloudflare Workers Static Assets deployed (use the *.workers.dev URL and Claim URL printed above)."
+else
+  echo "[4/4] Publishing '${FOLDER}/dist' to Cloudflare Pages project '${EFFECTIVE_PROJECT}' (branch: ${BRANCH})..."
+  npx --yes wrangler@latest pages project create "$EFFECTIVE_PROJECT" --production-branch=main >/dev/null 2>&1 || true
+  npx --yes wrangler@latest pages deploy "$DIST_DIR" --project-name="$EFFECTIVE_PROJECT" --branch="$BRANCH"
+  echo "[DONE] Cloudflare Pages live URL: https://${EFFECTIVE_PROJECT}.pages.dev"
+fi

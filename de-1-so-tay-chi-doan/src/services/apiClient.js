@@ -39,6 +39,9 @@ export async function apiRequest(path, { method = 'GET', body, token, headers = 
   }
 
   if (!res.ok || payload?.ok === false) {
+    if (res.status === 401 && token && typeof window !== 'undefined' && !normalizedPath.includes('/auth/change-password')) {
+      window.dispatchEvent(new CustomEvent('chidoan:unauthorized'));
+    }
     throw new ApiError(payload?.error?.message || `HTTP ${res.status}`, {
       status: res.status,
       code: payload?.error?.code || 'HTTP_ERROR',

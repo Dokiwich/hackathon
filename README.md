@@ -6,7 +6,7 @@ Kho lưu trữ được tổ chức thành **4 thư mục độc lập hoàn to�
 
 | Đề | Thư mục | Trạng thái hiện tại | Cổng FE / BE |
 |---|---|---|---|
-| **Đề 1: Sổ Tay Chi Đoàn Số** | [`de-1-so-tay-chi-doan/`](de-1-so-tay-chi-doan/AGENTS.md) | Starter Skeleton (FE + BE chuẩn cấu trúc, sẵn sàng code) | `5174` / `4001` |
+| **Đề 1: Sổ Tay Chi Đoàn Số** | [`de-1-so-tay-chi-doan/`](de-1-so-tay-chi-doan/AGENTS.md) | Full MVP (FE 6 màn + User Flow, BE 5 module, Pitch Deck 10 slide) | `5174` / `4001` |
 | **Đề 2: Tai Mắt Công Dân Đồng Nai** | [`de-2-tai-mat-cong-dan/`](de-2-tai-mat-cong-dan/AGENTS.md) | Full MVP (95 xã/phường, GPS/Watermark, Leaflet, SLA, Pitch Deck) + BE Skeleton (PostGIS) | `5173` / `4002` |
 | **Đề 3: OCOP Đồng Nai Lên Sàn** | [`de-3-ocop-len-san/`](de-3-ocop-len-san/AGENTS.md) | Starter Skeleton (FE + BE chuẩn cấu trúc, sẵn sàng code) | `5175` / `4003` |
 | **Đề 4: Chống Lừa 101** | [`de-4-chong-lua-101/`](de-4-chong-lua-101/AGENTS.md) | Starter Skeleton (FE + BE chuẩn cấu trúc, sẵn sàng code) | `5176` / `4004` |

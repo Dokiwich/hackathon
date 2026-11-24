@@ -8,7 +8,9 @@ const envSchema = z
     API_PREFIX: z.string().startsWith('/').default('/api/v1'),
     CORS_ORIGINS: z
       .string()
-      .default('http://localhost:5173,http://localhost:5174,http://localhost:5175,http://localhost:5176'),
+      .default(
+        'https://sotaychidoan.vn,https://www.sotaychidoan.vn,https://de-1-so-tay-chi-doan.pages.dev,http://localhost:5173,http://localhost:5174,http://localhost:5175,http://localhost:5176'
+      ),
     RATE_LIMIT_MAX: z.coerce.number().int().min(10).max(10000).default(120),
     DATABASE_URL: z.string().optional().default(''),
     JWT_SECRET: z.string().optional().default('')

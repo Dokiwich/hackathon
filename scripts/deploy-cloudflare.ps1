@@ -17,6 +17,8 @@ param(
 
   [switch]$Preview,
 
+  [switch]$Temporary,
+
   [switch]$SkipInstall
 )
 
@@ -46,12 +48,18 @@ function Resolve-TrackFolder([string]$Alias) {
   }
 }
 
-function Invoke-WranglerQuiet([string[]]$WArgs) {
+function Test-WranglerAuthenticated {
   $prev = $ErrorActionPreference
   $ErrorActionPreference = 'Continue'
   try {
-    & npx @WArgs 2>&1 | Out-Null
-    return ($LASTEXITCODE -eq 0)
+    $out = (& npx --yes wrangler@latest whoami 2>&1 | Out-String)
+    if ($LASTEXITCODE -ne 0) {
+      return $false
+    }
+    if ($out -match 'not authenticated') {
+      return $false
+    }
+    return $true
   }
   finally {
     $ErrorActionPreference = $prev
@@ -71,8 +79,8 @@ try {
   }
 
   if (Get-Command 'git' -ErrorAction SilentlyContinue) {
-    $trackedEnv = (& git ls-files "$folder/.env*" 2>$null)
-    if ($trackedEnv) {
+    $trackedEnv = @(& git ls-files "$folder/.env*" 2>$null | Where-Object { $_ -and ($_ -notmatch '(^|[\\/])\.env\.example$') })
+    if ($trackedEnv.Count -gt 0) {
       Write-Warning "Detected tracked .env files: $($trackedEnv -join ', '). Remove them from git tracking."
     }
   }
@@ -84,8 +92,11 @@ try {
   }
 
   Write-Host "[2/4] Checking Cloudflare authentication..." -ForegroundColor Cyan
-  if (-not $env:CLOUDFLARE_API_TOKEN) {
-    $loggedIn = Invoke-WranglerQuiet @('--yes', 'wrangler@latest', 'whoami')
+  if ($Temporary) {
+    Write-Host 'Temporary mode enabled (--temporary): skipping account login check.' -ForegroundColor Yellow
+  }
+  elseif (-not $env:CLOUDFLARE_API_TOKEN) {
+    $loggedIn = Test-WranglerAuthenticated
     if (-not $loggedIn) {
       Write-Host 'Opening browser to sign in to Cloudflare Wrangler...' -ForegroundColor Yellow
       & npx --yes wrangler@latest login
@@ -104,24 +115,54 @@ try {
   Assert-ExitCode "npm run build ($folder)"
 
   $distDir = Join-Path $appRoot 'dist'
-  foreach ($req in @('index.html', '_redirects', '_headers')) {
+  foreach ($req in @('index.html', '_headers')) {
     if (-not (Test-Path (Join-Path $distDir $req))) {
-      throw "Missing required Cloudflare Pages asset: $distDir\$req"
+      throw "Missing required Cloudflare asset: $distDir\$req"
     }
   }
 
-  $branch = 'main'
-  if ($Preview) {
-    $branch = 'preview'
+  $distRedirects = Join-Path $distDir '_redirects'
+  if (Test-Path $distRedirects) {
+    Remove-Item $distRedirects -Force
+    Write-Host "Removed generated dist/_redirects (Cloudflare Pages & Workers Static Assets handle SPA fallback natively; '/* /index.html 200' causes API error 100324)." -ForegroundColor DarkGray
   }
 
-  Write-Host "[4/4] Publishing '$folder/dist' to Cloudflare Pages project '$effectiveProject' (branch: $branch)..." -ForegroundColor Cyan
-  Invoke-WranglerQuiet @('--yes', 'wrangler@latest', 'pages', 'project', 'create', $effectiveProject, '--production-branch=main') | Out-Null
+  if ($Temporary) {
+    $hasWranglerCfg = (Test-Path (Join-Path $appRoot 'wrangler.jsonc')) -or (Test-Path (Join-Path $appRoot 'wrangler.json')) -or (Test-Path (Join-Path $appRoot 'wrangler.toml'))
+    if (-not $hasWranglerCfg) {
+      throw "Missing wrangler.jsonc, wrangler.json, or wrangler.toml in $appRoot for --temporary Workers Static Assets deploy."
+    }
+    Write-Host "[4/4] Publishing '$folder/dist' as temporary Cloudflare Workers Static Assets..." -ForegroundColor Cyan
+    Push-Location $appRoot
+    try {
+      & npx --yes wrangler@latest deploy --temporary
+      Assert-ExitCode 'wrangler deploy --temporary'
+    }
+    finally {
+      Pop-Location
+    }
+    Write-Host "[DONE] Temporary Cloudflare Workers Static Assets deployed (use the *.workers.dev URL and Claim URL printed above)." -ForegroundColor Green
+  }
+  else {
+    $branch = 'main'
+    if ($Preview) {
+      $branch = 'preview'
+    }
 
-  & npx --yes wrangler@latest pages deploy $distDir --project-name $effectiveProject --branch $branch
-  Assert-ExitCode 'wrangler pages deploy'
+    Write-Host "[4/4] Publishing '$folder/dist' to Cloudflare Pages project '$effectiveProject' (branch: $branch)..." -ForegroundColor Cyan
+    $prevPref = $ErrorActionPreference
+    $ErrorActionPreference = 'Continue'
+    try {
+      & npx --yes wrangler@latest pages project create $effectiveProject --production-branch=main 2>&1 | Out-Null
+    }
+    finally {
+      $ErrorActionPreference = $prevPref
+    }
 
-  Write-Host "[DONE] Cloudflare Pages live URL: https://$effectiveProject.pages.dev" -ForegroundColor Green
+    & npx --yes wrangler@latest pages deploy $distDir --project-name $effectiveProject --branch $branch
+    Assert-ExitCode 'wrangler pages deploy'
+    Write-Host "[DONE] Cloudflare Pages live URL: https://$effectiveProject.pages.dev" -ForegroundColor Green
+  }
 }
 finally {
   if ($null -eq $originalBasePath) {
